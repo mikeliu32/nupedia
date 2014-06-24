@@ -67,7 +67,7 @@ require_once('header.php');
 <?php
 	if($userId==null || !$userExist):
 ?>
-	<div class="errormsg">找不到用戶資料</div>
+	<div class="errormsg">用戶資料不存在</div>
 <?php
 	else:
 ?>

@@ -2,13 +2,20 @@
 include_once('inc/auth.php');
 require_once('pathManage.php');
 
-$metafile = $dataHome.$sitePath."/metainfo.json";
-$metainfo = json_decode(file_get_contents($metafile));
 
-$meta = $metainfo->meta;
+$IS_ENTRY_EXIST = (strlen($sitePath)>1 && strlen($entryID)>1 && is_dir($dataHome.$sitePath));
 
-$contentfile = $dataHome.$sitePath."/content.json";
-$article = json_decode(file_get_contents($contentfile));
+if($IS_ENTRY_EXIST){
+
+	$metafile = $dataHome.$sitePath."/metainfo.json";
+	$metainfo = json_decode(file_get_contents($metafile));
+
+	$meta = $metainfo->meta;
+
+	$contentfile = $dataHome.$sitePath."/content.json";
+	$article = json_decode(file_get_contents($contentfile));
+
+}
 //$image = $json[$user] = array("first" => $first, "last" => $last);
 //
 //file_put_contents($file, json_encode($json));
@@ -28,12 +35,17 @@ $article = json_decode(file_get_contents($contentfile));
 <!--script src="http://code.jquery.com/jquery-1.10.2.min.js"></script-->
 <script src="js/jquery-1.11.0.min.js"></script>
 
+<?php 
+	if(!$IS_ENTRY_EXIST):
+?>
+<title>資料不存在 | NuPedia</title>
+<?php
+	else:
+?>
 <title><?php echo $metainfo->title;?> | NuPedia</title>
 <meta name="description" content="<?php echo $article->abstract_plain;?>"/>
-
 <!-- Twitter Card data --> 
 <meta name="twitter:card" value="summary"/>
-
 <!-- Open Graph data --> 
 <meta property="og:title" content="<?php echo $metainfo->title;?> | NuPedia"/> 
 <meta property="og:type" content="article"/> 
@@ -41,6 +53,10 @@ $article = json_decode(file_get_contents($contentfile));
 <meta property="og:image" content="http://gaislab.cs.ccu.edu.tw/~yml101/nupedia/<?php echo $metainfo->image? "npdata/".$sitePath."/images/".$metainfo->image : "tool/defaultPic.png";?>" />
 <meta property="og:description" content="<?php echo $article->abstract_plain;?>"/>
 <meta property="og:site_name" content="NUPedia" />
+<?php
+	endif;
+?>
+
 </head>
 
 <body>
@@ -49,6 +65,13 @@ require_once('header.php');
 ?>
 
 <main class="main-wrapper">
+<?php
+	if(!$IS_ENTRY_EXIST):
+?>
+	<div class="errormsg">資料不存在</div>
+<?php
+	else:
+?>
 <nav id="article-section-nav">
 <ul>
 <li><a href="#arti-header">摘要</a></li>
@@ -394,6 +417,9 @@ require_once('header.php');
 </div>
 </div>
 
+<?php
+	endif;
+?>
 
 </main>
 <script type="text/javascript">
