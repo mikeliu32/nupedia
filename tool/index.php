@@ -2,9 +2,6 @@
 include_once('inc/auth.php');
 include_once('pathManage.php');
 
-
-$IS_ENTRY_EXIST = (strlen($sitePath)>1 && strlen($entryID)>1 && is_dir($dataHome.$sitePath));
-
 if($IS_ENTRY_EXIST){
 
 	$metafile = $dataHome.$sitePath."/metainfo.json";

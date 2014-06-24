@@ -12,6 +12,9 @@ else{
 	$entryID= "";
 }
 
+$IS_ENTRY_EXIST = (strlen($sitePath)>1 && strlen($entryID)>1 && is_dir($dataHome.$sitePath));
+
+
 
 
 
