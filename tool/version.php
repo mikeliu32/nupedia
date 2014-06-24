@@ -4,6 +4,9 @@ date_default_timezone_set('Asia/Taipei');
 include_once('inc/auth.php');
 include_once('pathManage.php');
 
+$IS_ENTRY_EXIST = (strlen($sitePath)>1 && strlen($entryID)>1 && is_dir($dataHome.$sitePath));
+
+if($IS_ENTRY_EXIST){
 	$metafile = $dataHome.$sitePath."/metainfo.json";
 	$metainfo = json_decode(file_get_contents($metafile));
 
@@ -14,6 +17,7 @@ include_once('pathManage.php');
 
 	if($IS_LOGIN)
 		$IS_AUTHOR = isAuthor($metainfo->author);
+}
 
 ?>
 
@@ -40,7 +44,13 @@ require_once('header.php');
 ?>
 
 <main class="main-wrapper">
-
+<?php
+	if(!$IS_ENTRY_EXIST):
+?>
+	<div class="errormsg">資料不存在</div>
+<?php
+	else:
+?>
 <div class="main-leftaside">
 <span class="backToEntryBtn"><a href="index.php?site=<?php echo urlencode($sitePath);?>"><i class="icon-angleb-left"></i> 返回條目</a></span>
 <div class="asidebox infobox">
@@ -154,16 +164,16 @@ require_once('header.php');
 
 ?>
 
-
 <!--li><i class="icon-clock"></i>mikeliu32 於 2014/06/16 18:00 建立條目<span class="recover-btn"><i class="icon-history"></i>回復此版本</span></li>
 <li><i class="icon-clock"></i>mikeliu32 於 2014/06/16 18:00 建立分支版本 (來源:莫札特 by gaislab)<span class="recover-btn"><i class="icon-history"></i>回復此版本</span></li>
 <li><i class="icon-clock"></i>mikeliu32 於 2014/06/16 18:00 編輯條目<span class="recover-btn"><i class="icon-history"></i>回復此版本</span></li-->
  
 </ul>
-
-
 </div>
 
+<?php
+	endif;
+?>
 
 </main>
 <script type="text/javascript">
