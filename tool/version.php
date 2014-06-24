@@ -4,7 +4,6 @@ date_default_timezone_set('Asia/Taipei');
 include_once('inc/auth.php');
 include_once('pathManage.php');
 
-
 if($IS_ENTRY_EXIST){
 	$metafile = $dataHome.$sitePath."/metainfo.json";
 	$metainfo = json_decode(file_get_contents($metafile));
@@ -16,6 +15,10 @@ if($IS_ENTRY_EXIST){
 
 	if($IS_LOGIN)
 		$IS_AUTHOR = isAuthor($metainfo->author);
+}
+else{
+	header("Location: error.php");
+	die();
 }
 
 ?>
@@ -43,13 +46,7 @@ require_once('header.php');
 ?>
 
 <main class="main-wrapper">
-<?php
-	if(!$IS_ENTRY_EXIST):
-?>
-	<div class="errormsg">資料不存在</div>
-<?php
-	else:
-?>
+
 <div class="main-leftaside">
 <span class="backToEntryBtn"><a href="index.php?site=<?php echo urlencode($sitePath);?>"><i class="icon-angleb-left"></i> 返回條目</a></span>
 <div class="asidebox infobox">
@@ -169,10 +166,6 @@ require_once('header.php');
  
 </ul>
 </div>
-
-<?php
-	endif;
-?>
 
 </main>
 <script type="text/javascript">

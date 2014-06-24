@@ -34,11 +34,15 @@ if($userId!=null){
 	
 		$resultAry['entry'] = $userEntryObj->hits->hits;	
 		$resultAry['colab'] = $userColabObj->hits->hits;	
-		$userExist=true;
 	}
 	else{
-		$userExist=false;
+		header("Location: error.php");
+		die();
 	}
+}
+else{
+	header("Location: login.php");
+	die();
 }
 
 ?>
@@ -64,13 +68,6 @@ if($userId!=null){
 require_once('header.php');
 ?>
 <main class="main-wrapper">
-<?php
-	if($userId==null || !$userExist):
-?>
-	<div class="errormsg">用戶資料不存在</div>
-<?php
-	else:
-?>
 	
 	<div id="leftWrap">
 		<div class="leftbox userinfo">
@@ -166,9 +163,7 @@ require_once('header.php');
 	</div>
 	
 	</div>
-<?php
-	endif;
-?>
+
 </main>
 <script type="text/javascript">
 $( document ).ready(function() {

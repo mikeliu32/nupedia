@@ -1,23 +1,40 @@
 <?php
+include_once('inc/auth.php');
 require_once('pathManage.php');
 
-$metafile = $dataHome.$sitePath."/metainfo.json";
-$metainfo = json_decode(file_get_contents($metafile));
 
-$meta = $metainfo->meta;
+if($IS_ENTRY_EXIST){
+	$metafile = $dataHome.$sitePath."/metainfo.json";
+	$metainfo = json_decode(file_get_contents($metafile));
 
-$contentfile = $dataHome.$sitePath."/content.json";
-$article = json_decode(file_get_contents($contentfile));
+	$IS_AUTHOR = isAuthor($metainfo->author);
+	
+	if(!$IS_AUTHOR){
+		header("Location: error.php");
+		die();
+	}
+	
+	$meta = $metainfo->meta;
 
+	$contentfile = $dataHome.$sitePath."/content.json";
+	$article = json_decode(file_get_contents($contentfile));
 
-if(isset($_GET['secID'])){
-	$selectedSecID = $_GET['secID']; 
+	
+	if(isset($_GET['secID'])){
+		$selectedSecID = $_GET['secID']; 
+	}
+	else{
+		$selectedSecID =0;
+	}
 }
 else{
-	$selectedSecID =0;
+	header("Location: error.php");
+	die();
 }
 
+
 ?>
+
 
 <!DOCTYPE html>
 <html>

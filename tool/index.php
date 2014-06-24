@@ -16,9 +16,10 @@ if($IS_ENTRY_EXIST){
 		$IS_AUTHOR = isAuthor($metainfo->author);
 	
 }
-//$image = $json[$user] = array("first" => $first, "last" => $last);
-//
-//file_put_contents($file, json_encode($json));
+else{
+	header("Location: error.php");
+	die();
+}
 ?>
 
 <!DOCTYPE html>
@@ -35,13 +36,6 @@ if($IS_ENTRY_EXIST){
 <!--script src="http://code.jquery.com/jquery-1.10.2.min.js"></script-->
 <script src="js/jquery-1.11.0.min.js"></script>
 
-<?php 
-	if(!$IS_ENTRY_EXIST):
-?>
-<title>資料不存在 | NuPedia</title>
-<?php
-	else:
-?>
 <title><?php echo $metainfo->title;?> | NuPedia</title>
 <meta name="description" content="<?php echo $article->abstract_plain;?>"/>
 <!-- Twitter Card data --> 
@@ -53,10 +47,6 @@ if($IS_ENTRY_EXIST){
 <meta property="og:image" content="http://gaislab.cs.ccu.edu.tw/~yml101/nupedia/<?php echo $metainfo->image? "npdata/".$sitePath."/images/".$metainfo->image : "tool/defaultPic.png";?>" />
 <meta property="og:description" content="<?php echo $article->abstract_plain;?>"/>
 <meta property="og:site_name" content="NUPedia" />
-<?php
-	endif;
-?>
-
 </head>
 
 <body>
@@ -65,13 +55,7 @@ require_once('header.php');
 ?>
 
 <main class="main-wrapper">
-<?php
-	if(!$IS_ENTRY_EXIST):
-?>
-	<div class="errormsg">資料不存在</div>
-<?php
-	else:
-?>
+
 <nav id="article-section-nav">
 <ul>
 <li><a href="#arti-header">摘要</a></li>
@@ -434,10 +418,6 @@ require_once('header.php');
 	</ul>
 </div>
 </div>
-
-<?php
-	endif;
-?>
 
 </main>
 <script type="text/javascript">
