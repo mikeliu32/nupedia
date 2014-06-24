@@ -1,0 +1,691 @@
+<?php
+
+$metafile = "metainfo";
+$metainfo = json_decode(file_get_contents($metafile));
+
+$meta = $metainfo->meta;
+
+$contentfile = "content";
+$article = json_decode(file_get_contents($contentfile));
+//$image = $json[$user] = array("first" => $first, "last" => $last);
+
+//file_put_contents($file, json_encode($json));
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/normalize.css" type="text/css">
+<link rel="stylesheet" href="css/nupedia.css" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" type="text/css">
+<!--script src="http://code.jquery.com/jquery-1.10.2.min.js"></script-->
+<script src="js/jquery-1.11.0.min.js"></script>
+
+<title>NuPedia</title>
+</head>
+
+<body>
+<header class="headerbar">
+<h2 class="header-logo">NUPedia</h2>
+</header>
+
+<main class="main-wrapper">
+<nav id="article-section-nav">
+<ul>
+<li><a href="#arti-header">摘要</a></li>
+<li><a href="#arti-sec1">生平</a></li>
+<li><a href="#arti-sec2">作品</a></li>
+<li><a href="#arti-sec3">莫札特的生死之謎</a></li>
+<li><a href="#arti-sec4">參考文獻</a></li>
+<li><a href="#arti-sec5">參見</a></li>
+<li><a href="#arti-sec6">外部連結</a></li>
+</ul>
+</nav>
+
+
+<div class="main-leftaside">
+<div class="asidebox infobox">
+	<div class="infobox-image">
+		<img src="images/mozart.jpg" />
+	</div>
+
+	<div class="asidebox-content">
+		<p class="infobox-name"><?php echo $metainfo->name;?></p>
+		<p class="infobox-name"><?php echo $metainfo->ename;?></p>
+	
+		<table class="infotable clearfix">
+		<tbody>
+
+<?php
+		foreach($meta as $metaRow){
+?>
+		<tr class="infotable-row">
+		<th class="infotable-row-header"><?php echo $metaRow->name;?></th>
+		<td class="infotable-row-content"><?php echo $metaRow->value;?></td>
+		</tr>
+<?php
+		}
+?>
+		<!--tr class="infotable-row">
+		<th class="infotable-row-header">逝世</th>
+		<td class="infotable-row-content">1791年12月5日（35歲）<br>
+		神聖羅馬帝國 奧地利 維也納
+		</td>
+		</tr>
+		<tr class="infotable-row">
+		<th class="infotable-row-header">所屬時期／樂派</th>
+		<td class="infotable-row-content">古典主義維也納古典樂派</td>
+		</tr>
+		<tr class="infotable-row">
+		<th class="infotable-row-header">擅長類型</th>
+		<td class="infotable-row-content">交響曲，協奏曲，室內樂，鋼琴音樂，宗教音樂，歌劇</td>
+		</tr>
+		<tr class="infotable-row">
+		<th class="infotable-row-header">師從</th>
+		<td class="infotable-row-content">利奧波德·莫札特</td>
+		</tr>
+		<tr class="infotable-row">
+		<th class="infotable-row-header">學生/受影響人物</th>
+		<td class="infotable-row-content">胡梅爾，蘇斯邁爾，安東寧·弗拉尼茨基</td>
+		</tr-->
+		</tbody>
+		</table>
+	</div>
+</div>
+<div class="asidebox">
+	<div class="asidebox-header">作者資訊</div>
+	<div class="asidebox-content">
+		<table class="infotable infotable-fillwidth clearfix">
+		<tbody>
+
+		<tr class="infotable-row">
+		<th class="infotable-row-header">作者</th>
+		<td class="infotable-row-content"><?php echo $metainfo->author;?></td>
+		</tr>
+		<tr class="infotable-row">
+		<th class="infotable-row-header">協作者</th>
+		<td class="infotable-row-content"><?php echo ($metainfo->collaborator)? $metainfo->collaborator:"無";?></td>
+		</tr>
+		<tr class="infotable-row">
+		<th class="infotable-row-header">最後編輯</th>
+		<td class="infotable-row-content"><? echo $metainfo->lastEdit;?><br>(<a href="#">歷史編輯紀錄</a>)</td>
+		</tr>
+		</tbody>
+		</table>
+	</div>
+</div>
+<div class="asidebox">
+	<div class="asidebox-header">相關條目</div>
+	<div class="asidebox-content">
+		<ul>
+		<li><a href="#">貝多芬</a></li>
+		<li><a href="#">海頓</a></li>
+		<li><a href="#">奧地利</a></li>
+		<li><a href="#">古典音樂</a></li>
+		<li><a href="#">魔笛</a></li>
+		<li><a href="#">交響樂</a></li>
+		</ul>
+	</div>
+</div>
+<div class="asidebox">
+	<div class="asidebox-header">熱門條目</div>
+	<div class="asidebox-content">
+		<ul>
+		<li><a href="#">太陽花學運</a></li>
+		<li><a href="#">馬英九</a></li>
+		<li><a href="#">中華民國憲法</a></li>
+		<li><a href="#">兩岸服貿協議</a></li>
+		<li><a href="#">黑色島國</a></li>
+		</ul>
+	</div>
+</div>
+</div>
+
+<div class="main-content">
+<article class="main-article">
+<header id="arti-header">
+<h1 class="article-title"><?php echo $metainfo->title;?></h1>
+<p class="article-abstract article-section">沃夫岡·阿瑪迪斯·莫札特（德語：Wolfgang Amadeus Mozart，1756年1月27日－1791年12月5日），出生於薩爾茲堡，逝世於維也納，是歐洲最
+偉大的古典主義音樂作曲家之一。35歲便英年早逝的莫札特，留下的重要作品總括當時所有的音樂類型。根據當代的考證顯示，在鋼琴和小提琴
+相關的創作，他無疑是一個天份極高的藝術家，譜出的協奏曲、交響曲、奏鳴曲、小夜曲、嬉遊曲等等成為後來古典音樂的主要形式，他同時也
+是歌劇的專家，成就至今仍能順應時代的變遷而不朽。此外其作曲風格兼具旋律及藝術性，悅耳而活潑開朗，令其作品地位足與巴赫及貝多芬相
+提並論，亦讓人感受到音樂由巴洛克時期轉向古典主義時期的不同。</p>
+
+</header>
+
+<section class="article-section" id="arti-sec1">
+<div class="section-header">
+<h2>生平</h2>
+</div>
+
+<p>莫札特於1756年出生於薩爾斯堡，在當時這是薩爾斯堡總教區（Archbishopric of Salzburg）的首府，屬於
+神聖羅馬帝國。父親列奧波爾德·莫札特（1719年—1787年）是薩爾斯堡大主教教廷交響樂隊的演奏員和作
+曲家，母親為安娜·瑪麗亞·波特爾（Anna Maria Pertl）（1720年—1778年）。身為家中第七個小孩，在他
+姊姊瑪利亞·安娜（Maria Anna，暱稱南妮兒（Nannerl））1751年出生之前，以及之後至他出生之間的這段
+時間，分別有三位及兩位不幸夭於年幼。</p>
+
+<p>出生受洗時，他被命名為「Joannes Chrysostomus Wolfgangus Theophilus」（約翰尼斯·克魯索斯多穆斯
+·沃爾夫岡格斯·泰奧菲盧斯）。「Theophilus」意為「天主之愛」，這個名字相當於德語的「Gottlieb」、義
+大利文「Amedeo」以及拉丁文「Amadeus」，但生前卻從未有人以此名號稱呼他。現在，我們所認識莫札
+特的名字Wolfgang Amadeus Mozart為莫札特在正式場合用的名字。</p>
+<p><strong>樂行歐洲</strong></p>
+<p>1762年至1773年間，莫札特隨父母經常在歐洲做演出旅行。在倫敦他見到英國巴赫，在後來的創作中深受英國巴赫的影響。1766年，他開始受聘於
+到架構交響曲的技巧。1767年，年方十一，他寫出第一部歌劇《阿波羅與希亞欽杜斯》（Apollo et Hyacinthus，K.38）並由薩爾斯堡大學附屬高
+級中學的學生們演出這齣拉丁喜劇。返回奧地利後，他定期往返維也納，且於1768年夏天寫出另外兩部歌劇，名為《牧羊人與牧羊女》（Bastien 
+et Bastienne, K.50）與善意的謊言（La finta semplice），當時莫札特年僅十二歲。隔年便受大主教提名為樂團首席。</p>
+</section>
+
+<section class="article-section" id="arti-sec2">
+<div class="section-header">
+<h2>作品</h2>
+</div>
+
+<p>7月，一位不知名人士要求他創作一首《安魂曲》，且必須匿名。今日我們知道是瓦爾塞根伯爵，人們猜想或許他想讓他的朋友們猜作者的名字，
+又或許想將著作權據為己有。因疾病和貧窮而衰弱的莫札特，還必須面對工作的重負，因為他在八月初收到一份關於為神聖羅馬帝國皇帝利奧波
+德二世的加冕創作歌劇的請求（狄托的仁慈K.621），而且必須於三週內寫完。</p>
+
+<p>三十五歲的莫札特於十二月辭世，留下未完成的《安魂曲》（Requiem K.626）（受其妻子康絲坦茲之託，後來這首曲子
+由他的學生完成，Franz Xavier Sussmayer而後又由Sigismund von Neukomm接手）。Neukomm的集成版只於1819年在
+里約熱內盧演奏，之後就被人們忘記了。第二次演奏於2006年3月10日在Lievin為紀念Courrieres礦難而進行。</p>
+
+<p>有個傳奇故事說莫札特在《安魂曲》裡見到了自己即將死去的先兆，這個傳說被用在福爾曼的電影《阿瑪迪斯》裡，這其
+中浪漫的想像多過於事實。
+</p>
+<p>    
+莫札特的死因沒有確定。後世學者研究，認為他可能死於旋毛蟲病、流感、水銀中毒，甚至一種罕見的腎病。目前被最多
+學者接受的死因是風濕熱。莫札特的遺體，根據利奧波德二世皇帝下達之有關葬禮的法令，最後在維也納郊區的聖馬克思
+墓園，葬於莫札特家族與他朋友共有的靈位。與民間相傳不同的是，莫札特其實並未被草率地葬在公共墓園的靈位。那一
+塊共有的靈位則是事先購得，可容納十具遺體（成人八位、小孩兩位）。同年12月14日布拉格舉辦了一場追思會，參加者
+成千上萬。Emanuel Schikaneder則在維也納籌畫了一場《安魂曲》的首演。
+</p>
+</section>
+
+<section class="article-section" id="arti-sec3">
+<div class="section-header">
+<h2>莫札特的生死之謎</h2>
+</div>
+<h1>H1 header</h1>
+<h2>H2 header</h2>
+<h3>H3 header</h3>
+<h4>H4 header</h4>
+<h5>H5 header</h5>
+<h6>H6 header</h6>
+
+<p>太陽花學運，又稱318學運、佔領國會事件等[3]，是指2014年3月18日起臺灣的大學學生和公民共同發起佔領中華民國立法院所引起的社會運動事件。
+事件起始於當地時間3月18日晚間6時，反對《兩岸服務貿易協議》未依照先前朝野協商共識逐條審查的抗議群眾在立法院外舉行「守護民主之夜」晚會[4][5]；
+之後有400多名學生趁著警衛不備而進入立法院內靜坐抗議，接著於晚間9時突破警方的封鎖線並違法佔領立法院議場。佔領議場事件發生後，在26小時內便有1萬多
+名大學學生和群眾聚集在立法院外表達支持[6]。</p>
+<p>參與佔領立法院議場行動者，主要領導人為國立臺灣大學研究生的林飛帆等人，後續加入國立清華大學研究生陳為廷、黑色島國青年陣線成員魏揚、陳廷豪[7]。
+學生主張《兩岸服務貿易協議》將會使中華人民共和國傷害臺灣經濟的發展，並且讓臺灣更容易受到來自中華人民共和國的政治壓力影響[8][9]。在議場遭到佔領後
+，內政部警政署緊急調動警力前往立法院支援[10]，抗議學生則陸續用立法委員的座椅堵住議場門口以防止遭到驅離[11]；警方多次嘗試清除議場內部的學生但沒有
+成功，期間雙方也因此發生肢體衝突並且有數人受傷。之後雙方處於對峙態勢，但記者與其他相關人士仍可繞道進入場內[12]，外界也提供大量食物與衣物等民生物
+資以支持場內外的抗議者。3月23日晚間19時，另一群示威者衝至鄰近的行政院大樓，破窗而入，但稍後遭到強制驅離。</p> 
+
+<p>this is <a href="#">link</a> yo</p>
+
+<p>this is <strong>bold</strong> yo</p>
+
+<p>this is <em>em</em> yo</p>
+</section>
+<section class="article-section" id="arti-sec4">
+<div class="section-header">
+<h2>參考文獻</h2>
+</div>
+<p>太陽花學運，又稱318學運、佔領國會事件等[3]，是指2014年3月18日起臺灣的大學學生和公民共同發起佔領中華民國立法院所引起的社會運動事件。
+事件起始於當地時間3月18日晚間6時，反對《兩岸服務貿易協議》未依照先前朝野協商共識逐條審查的抗議群眾在立法院外舉行「守護民主之夜」晚會[4][5]；
+之後有400多名學生趁著警衛不備而進入立法院內靜坐抗議，接著於晚間9時突破警方的封鎖線並違法佔領立法院議場。佔領議場事件發生後，在26小時內便有1萬多
+名大學學生和群眾聚集在立法院外表達支持[6]。</p>
+<p>參與佔領立法院議場行動者，主要領導人為國立臺灣大學研究生的林飛帆等人，後續加入國立清華大學研究生陳為廷、黑色島國青年陣線成員魏揚、陳廷豪[7]。
+學生主張《兩岸服務貿易協議》將會使中華人民共和國傷害臺灣經濟的發展，並且讓臺灣更容易受到來自中華人民共和國的政治壓力影響[8][9]。在議場遭到佔領後
+，內政部警政署緊急調動警力前往立法院支援[10]，抗議學生則陸續用立法委員的座椅堵住議場門口以防止遭到驅離[11]；警方多次嘗試清除議場內部的學生但沒有
+成功，期間雙方也因此發生肢體衝突並且有數人受傷。之後雙方處於對峙態勢，但記者與其他相關人士仍可繞道進入場內[12]，外界也提供大量食物與衣物等民生物
+資以支持場內外的抗議者。3月23日晚間19時，另一群示威者衝至鄰近的行政院大樓，破窗而入，但稍後遭到強制驅離。</p> 
+
+<p>this is <a href="#">link</a> yo</p>
+
+<p>this is <strong>bold</strong> yo</p>
+
+<p>this is <em>em</em> yo</p>
+</section>
+<section class="article-section" id="arti-sec5">
+<div class="section-header">
+<h2>參見</h2>
+</div>
+<p>太陽花學運，又稱318學運、佔領國會事件等[3]，是指2014年3月18日起臺灣的大學學生和公民共同發起佔領中華民國立法院所引起的社會運動事件。
+事件起始於當地時間3月18日晚間6時，反對《兩岸服務貿易協議》未依照先前朝野協商共識逐條審查的抗議群眾在立法院外舉行「守護民主之夜」晚會[4][5]；
+之後有400多名學生趁著警衛不備而進入立法院內靜坐抗議，接著於晚間9時突破警方的封鎖線並違法佔領立法院議場。佔領議場事件發生後，在26小時內便有1萬多
+名大學學生和群眾聚集在立法院外表達支持[6]。</p>
+<p>參與佔領立法院議場行動者，主要領導人為國立臺灣大學研究生的林飛帆等人，後續加入國立清華大學研究生陳為廷、黑色島國青年陣線成員魏揚、陳廷豪[7]。
+學生主張《兩岸服務貿易協議》將會使中華人民共和國傷害臺灣經濟的發展，並且讓臺灣更容易受到來自中華人民共和國的政治壓力影響[8][9]。在議場遭到佔領後
+，內政部警政署緊急調動警力前往立法院支援[10]，抗議學生則陸續用立法委員的座椅堵住議場門口以防止遭到驅離[11]；警方多次嘗試清除議場內部的學生但沒有
+成功，期間雙方也因此發生肢體衝突並且有數人受傷。之後雙方處於對峙態勢，但記者與其他相關人士仍可繞道進入場內[12]，外界也提供大量食物與衣物等民生物
+資以支持場內外的抗議者。3月23日晚間19時，另一群示威者衝至鄰近的行政院大樓，破窗而入，但稍後遭到強制驅離。</p> 
+
+<p>this is <a href="#">link</a> yo</p>
+
+<p>this is <strong>bold</strong> yo</p>
+
+<p>this is <em>em</em> yo</p>
+</section>
+<section class="article-section" id="arti-sec6">
+<div class="section-header">
+<h2>外部連結</h2>
+</div>
+<p>太陽花學運，又稱318學運、佔領國會事件等[3]，是指2014年3月18日起臺灣的大學學生和公民共同發起佔領中華民國立法院所引起的社會運動事件。
+事件起始於當地時間3月18日晚間6時，反對《兩岸服務貿易協議》未依照先前朝野協商共識逐條審查的抗議群眾在立法院外舉行「守護民主之夜」晚會[4][5]；
+之後有400多名學生趁著警衛不備而進入立法院內靜坐抗議，接著於晚間9時突破警方的封鎖線並違法佔領立法院議場。佔領議場事件發生後，在26小時內便有1萬多
+名大學學生和群眾聚集在立法院外表達支持[6]。</p>
+<p>參與佔領立法院議場行動者，主要領導人為國立臺灣大學研究生的林飛帆等人，後續加入國立清華大學研究生陳為廷、黑色島國青年陣線成員魏揚、陳廷豪[7]。
+學生主張《兩岸服務貿易協議》將會使中華人民共和國傷害臺灣經濟的發展，並且讓臺灣更容易受到來自中華人民共和國的政治壓力影響[8][9]。在議場遭到佔領後
+，內政部警政署緊急調動警力前往立法院支援[10]，抗議學生則陸續用立法委員的座椅堵住議場門口以防止遭到驅離[11]；警方多次嘗試清除議場內部的學生但沒有
+成功，期間雙方也因此發生肢體衝突並且有數人受傷。之後雙方處於對峙態勢，但記者與其他相關人士仍可繞道進入場內[12]，外界也提供大量食物與衣物等民生物
+資以支持場內外的抗議者。3月23日晚間19時，另一群示威者衝至鄰近的行政院大樓，破窗而入，但稍後遭到強制驅離。</p> 
+
+<p>this is <a href="#">link</a> yo</p>
+
+<p>this is <strong>bold</strong> yo</p>
+
+<p>this is <em>em</em> yo</p>
+</section>
+</article>
+
+<section class="video-section">
+<div class="section-header">
+<h2>相關影音</h2>
+<a href="#" class="section-header-seemore">查看所有影音</a>
+<a href="#" class="section-header-expand">[+展開]</a>
+</div>
+<div id="video-scroller" class="video-scroller">
+	<div class="video-wrapper">
+	<ul class="videoboxlist">
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/OipS7HLPNK4/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/QtFZC658RP8/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description this is the video description this is the video description this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/gTEn6SRVAE4/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert演奏會</a>
+		<p>中文影片描述，中文影片描述，中文影片描述，中文影片描述</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/OipS7HLPNK4/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/QtFZC658RP8/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description this is the video description this is the video description this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/gTEn6SRVAE4/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert演奏會</a>
+		<p>中文影片描述，中文影片描述，中文影片描述，中文影片描述</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi_webp/Xm-ddyuELgs/mqdefault.webp"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi_webp/_0mIhjhUnjQ/mqdefault.webp"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/ue9I3eEySho/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/OipS7HLPNK4/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/QtFZC658RP8/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description this is the video description this is the video description this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi_webp/Xm-ddyuELgs/mqdefault.webp"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi_webp/_0mIhjhUnjQ/mqdefault.webp"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/ue9I3eEySho/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/OipS7HLPNK4/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/QtFZC658RP8/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description this is the video description this is the video description this is the video description</p>
+	</div>
+	</li>
+	</ul>
+	</div>
+	<div class="video-scroller-btn video-scroller-btn-left video-scroller-btn-deactive">&lt;</div>
+	<div class="video-scroller-btn video-scroller-btn-right">&gt;</div>
+</div>
+
+</section>
+
+<section class="photo-section">
+<div class="section-header">
+<h2>相關圖片</h2>
+</div>
+<div class="video-scroller">
+	<div class="video-wrapper">
+	<ul class="videoboxlist">
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/OipS7HLPNK4/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/QtFZC658RP8/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description this is the video description this is the video description this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/gTEn6SRVAE4/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert演奏會</a>
+		<p>中文影片描述，中文影片描述，中文影片描述，中文影片描述</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi_webp/Xm-ddyuELgs/mqdefault.webp"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi_webp/_0mIhjhUnjQ/mqdefault.webp"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/ue9I3eEySho/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/OipS7HLPNK4/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description</p>
+	</div>
+	</li>
+	<li class="videobox">
+	<img src="https://i1.ytimg.com/vi/QtFZC658RP8/mqdefault.jpg"/>
+	<div class="videobox-info">
+		<a href="#">Mozart Concert</a>
+		<p>this is the video description this is the video description this is the video description this is the video description</p>
+	</div>
+	</li>
+	</ul>
+	</div>
+	<div class="video-scroller-btn video-scroller-btn-left">&lt;</div>
+	<div class="video-scroller-btn video-scroller-btn-right">&gt;</div>
+</div>
+
+</section>
+<div class="selectTextMenu">
+	<ul>
+		<li>引用</li>
+		<li>分享</li>
+	</ul>
+</div>
+</div>
+
+
+</main>
+<script type="text/javascript">
+$( document ).ready(function() {
+
+/***** article section nav *****/
+
+	topGapping=46;
+	artiNavbox = $("#article-section-nav");
+	var artiNavbox_pos = artiNavbox.position();
+	
+	artiNavItems = artiNavbox.find("a");
+
+	if(artiNavItems.first()){
+		artiNavItems.first().addClass("active");
+	}
+	
+	artiSecList = artiNavItems.map(function(){
+		var item = $($(this).attr("href"));
+		
+		if(item.length){
+			return item;
+		}
+	});
+
+	
+	artiNavItems.click(function(e){
+	
+		var href = $(this).attr("href");
+		scrollTo = (href ==="#")? 0: $(href).offset().top+1;
+
+		$('html, body').stop().animate(
+		{scrollTop: scrollTo
+		}, 300);
+
+		e.preventDefault();
+	});
+
+	
+	var lastArtiSecId;
+
+	$(window).scroll(function(){
+
+		var window_pos = $(window).scrollTop()+topGapping;
+
+		if(window_pos>=94){
+			artiNavbox.find("ul").addClass("fixed");
+		}
+		else{
+			artiNavbox.find("ul").removeClass("fixed");
+		}
+
+		var curArtiSec = artiSecList.map(function(){
+			if($(this).offset().top<window_pos){
+				return this;
+			}
+		});
+
+		curArtiSec = curArtiSec[curArtiSec.length-1];
+
+
+		var curArtiSecId = curArtiSec && curArtiSec.length? curArtiSec[0].id : "";
+
+
+		if(lastArtiSecId !== curArtiSecId){
+			lastArtiSecId = curArtiSecId;
+
+			if(curArtiSecId.length!=0)
+				artiNavItems.removeClass("active").filter("[href=#"+curArtiSecId+"]").addClass("active");
+		}
+
+	});
+
+/***** video scroller *****/
+
+
+	video_scroller = $("#video-scroller");
+	video_wrapper = video_scroller.find(".video-wrapper");
+	videoboxlist = video_scroller.find(".videoboxlist");
+	
+	videobox_count = videoboxlist.children().length; 
+	videoboxlist.width(Math.ceil(videobox_count/2) * 282);
+	
+	videoPerPage = Math.floor(video_wrapper.width()/282);
+	totalOffset = Math.ceil(videobox_count/2);
+	curOffset=0;
+	
+	leftBtn = video_scroller.find(".video-scroller-btn-left");
+	rightBtn = video_scroller.find(".video-scroller-btn-right");
+	
+	leftBtn.click(function() {
+		
+		if(curOffset>0){
+			offsetLeft = curOffset;
+			offsetToMove = (offsetLeft>=videoPerPage)? videoPerPage : offsetLeft;
+			videoboxlist.css("margin-left", (curOffset-offsetToMove)*(-282));
+			curOffset-=offsetToMove;
+			checkScrollerBtn();
+		}
+		
+	});
+
+	rightBtn.click(function() {
+
+		if(curOffset+videoPerPage<totalOffset){
+			offsetLeft = totalOffset-(curOffset+videoPerPage);
+			offsetToMove = (offsetLeft>=videoPerPage)? videoPerPage : offsetLeft;
+			videoboxlist.css("margin-left", (curOffset+offsetToMove)*(-282));
+			curOffset+=offsetToMove;
+			checkScrollerBtn();
+		}
+
+	});	
+
+	function checkScrollerBtn(){
+		
+		if(curOffset==0){
+			leftBtn.addClass("video-scroller-btn-deactive");
+			rightBtn.removeClass("video-scroller-btn-deactive");
+		}
+		else if(curOffset+videoPerPage>=totalOffset){
+			rightBtn.addClass("video-scroller-btn-deactive");
+			leftBtn.removeClass("video-scroller-btn-deactive");
+		}
+		else{
+			leftBtn.removeClass("video-scroller-btn-deactive");
+			rightBtn.removeClass("video-scroller-btn-deactive");
+		}
+	}
+	
+/****select text********/
+
+
+	function getSelected() {
+
+		if(window.getSelection){
+			return window.getSelection();
+		}
+		else if(document.getSelection){
+			return document.getSelection();
+		}
+		else {
+			var selection = document.selection && document.selection.createRange();
+
+			if(selection.text){
+				return selection.text;
+			}
+			
+			return false;
+		}
+
+		return false;
+	}
+	
+	 $('.main-article').mousedown(function(e) {
+	    $('.selectTextMenu').hide();
+		mouseDownX = e.pageX;
+		mouseDownY = e.pageY;
+			console.log(e.pageY, e.pageX);
+
+	 });
+
+	
+	 $('.main-article').mouseup(function(e) {
+
+        var selection = getSelected();
+		
+        if(selection && selection.anchorOffset!=selection.focusOffset) {
+		console.log(selection);
+	console.log(e.pageY, e.pageX);
+        $('.selectTextMenu').css({
+
+        top: mouseDownY-140, //offsets
+
+        left: mouseDownX-200 //offsets
+
+        }).fadeIn();
+
+        }
+
+    });
+
+
+
+});
+
+</script>
+
+</body>
+
+</html>

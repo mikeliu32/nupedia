@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title> Ooki 編輯器：Test2 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="ooki/tiny_mce/plugins/plugin_src.css" rel="stylesheet" type="text/css">
+<style>
+<!--
+body { background-color:#FFF; }
+-->
+</style>
+<!-- ooki 必須載入以下： -->
+<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="ooki/tiny_mce/plugins/plugin_src.js"></script>
+<script type="text/javascript" src="ooki/tiny_mce/tiny_mce.js"></script>
+
+<script>
+var tmssG, tmssA;
+var ss_language, ss_plugins, ss_theme_advanced_fonts, ss_extended_valid_elements;
+
+ss_language = "zh-tw";
+<!-- 外掛功能：有 ooki_ 開頭的是 ooki 加入的功能 -->
+ss_plugins = "ooki_annotation, ooki_youtube, ooki_pushpage, ooki_cleartag, ooki_usercss, ooki_meta, ooki_tempcontent, ooki_abstract, ooki_bgsound, ooki_imgresize, ooki_questresult, ooki_quest, ooki_physicallink, ooki_imgbox, ooki_totable, ooki_imageleft, ooki_hidecontent, ooki_internalsearch, ooki_create_article, ooki_webcam, media, style, table, advimage, advlink, emotions,iespell,inlinepopups, preview, contextmenu, paste, directionality, fullscreen, noneditable, visualchars, nonbreaking, xhtmlxtras, wordcount, advlist, searchreplace";
+ss_theme_advanced_fonts = "\u65b0\u7d30\u660e\u9ad4=\u65b0\u7d30\u660e\u9ad4,\u7d30\u660e\u9ad4;\u6a19\u6977\u9ad4=\u6a19\u6977\u9ad4,Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sand;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats";
+ss_extended_valid_elements = 	"script[src|language]," + 
+								"style[id]," +
+								"iframe[src|frameborder|width|height]," +
+								"+a[id|style|rel|rev|charset|hreflang|dir|lang|tabindex|accesskey|type|name|href|target|title|class|onfocus|onblur|onclick|annotationdata|ondblclick|onmousedown|onmouseup|onmouseover|onmousemove|onmouseout|onkeypress|onkeydown|onkeyup]," + 
+								"div[id|name|dir|class|align|style|title|onclick|data]," +
+								"span[style|class|align|id|name|title|onclick|annotationdata|onmouseover|onmouseout|data]," +
+								"embed[src|width|height|type|wmode]," +
+								"img[data|id|name|width|height|class|align|title|src|arg|onload|border|summary|bgcolor|background|bordercolor|style]," +
+								"table[width|height|id|name|class|style|title|border|cellspacing|cellpadding]," +
+								"tr[id|name|width|height|style|bgcolor], td[id|name|width|height|style|bgcolor]," +
+								"input[id|name|class|type|size|title|value|checked|disabled]," +
+								"select[id|name|class|size|value], option[id|name|value]," +
+								"p[id|name|style]," +
+								"center";
+
+tmssG = {
+	mode:"textareas",
+	theme:"advanced",
+	editor_selector:"mceEditor",
+	language:ss_language,
+	plugins:ss_plugins,
+	content_css:"/ooki/tiny_mce/plugins/plugin_editor.css",
+	width:"100%",
+	media_use_script:true,
+	theme_advanced_fonts:ss_theme_advanced_fonts,
+	theme_advanced_toolbar_location:"top",
+	theme_advanced_toolbar_align:"left",
+	theme_advanced_buttons1:"usercss,bold,italic,underline,strikethrough,|,forecolor,backcolor,|,cut,copy,paste,cleanup,|,search,replace,|,undo,redo,|,fontselect,fontsizeselect,|,code,fullscreen",
+<!-- ooki 的功能按鈕有：createdir,createpage,selecttopage,internalsearch,annotation,physicallink,quest,questresult,imgresize,audio,video,bgsound,tempcontent,abstract,lastcontent,meta,cleartag -->
+	theme_advanced_buttons2:"justifyleft,justifycenter,|,outdent,indent,|,bullist,numlist,|,image,link,unlink,flash,|,createdir,createpage,selecttopage,internalsearch,annotation,physicallink,quest,questresult,|,imgresize,audio,video,|,bgsound,tempcontent,abstract,lastcontent,meta,cleartag",
+	theme_advanced_buttons3:"",
+	theme_advanced_statusbar_location:"bottom",
+	theme_advanced_resizing:true,
+	theme_advanced_resize_horizontal:false,
+	theme_advanced_resizing_use_cookie:false,
+	extended_valid_elements:ss_extended_valid_elements,
+	convert_urls : false,
+	convert_fonts_to_spans : true,
+	paste_auto_cleanup_on_paste	: false,
+	custom_undo_redo_levels : 10,
+	setup : ooki_MCE_Setup
+};
+
+tmssA = {
+	mode:"textareas",
+	theme:"advanced",
+	editor_selector:"mceEditor",
+	language:ss_language,
+	plugins:ss_plugins,
+	content_css:"/ooki/tiny_mce/plugins/plugin_editor.css",
+	width:"100%",
+	media_use_script:true,
+	theme_advanced_fonts:ss_theme_advanced_fonts,
+	theme_advanced_toolbar_location:"top",
+	theme_advanced_toolbar_align:"left",
+	theme_advanced_buttons1:"usercss,bold,italic,underline,strikethrough,|,forecolor,backcolor,|,cut,copy,paste,cleanup,|,search,replace,|,undo,redo,|,fontselect,fontsizeselect,|,code,", 
+	theme_advanced_buttons2:"justifyleft,justifycenter,justifyright,justifyfull,|,outdent,indent,|,bullist,numlist,|,sub,sup,|,hr,charmap,|,visualaid,|,tablecontrols", 
+	theme_advanced_buttons3:"image,link,unlink,flash,cleanup,|,createdir,createpage,selecttopage,rs_dirtable,internalsearch,annotation,imageleft,totable,imgbox,physicallink,quest,questresult,hidecontent,|,imgresize,media,audio,video,youtube,pushpage,|,clearall,cleartag,bgsound,tempcontent,abstract,lastcontent,fullscreen,meta", 
+	theme_advanced_statusbar_location:"bottom",
+	theme_advanced_resizing:true,
+	theme_advanced_resize_horizontal:false,
+	theme_advanced_resizing_use_cookie:false,
+	extended_valid_elements:ss_extended_valid_elements,
+	convert_urls : false,
+	convert_fonts_to_spans : true,
+	paste_auto_cleanup_on_paste	: false,
+	custom_undo_redo_levels : 10,
+	setup : ooki_MCE_Setup
+};
+
+// TinyMCE
+var sys_eidC = 'txtContent';
+var sys_mce_mode = 'G';
+var sModeA = "進階";
+var sModeG = "一般";
+
+function MCE_SetBnMode() 
+{
+	var ec, h;
+	ec = $('.mceToolbarRow1');
+	if ( ec.length > 0 ) {
+		h = '<a id="MCE_bnMode" href=# onclick="MCE_SetMode(); return false;" style="float:right; text-decoration:underline; color:#0080C0; cursor:hand; padding-right:5px;">' + 
+				'&lt;&lt; ' + (sys_mce_mode == 'G' ? sModeA : sModeG) + '</a>';
+		ec.before(h);
+		
+		main_window_adjust();
+	}
+	else
+		window.setTimeout(MCE_SetBnMode, 1000);
+}
+
+function MCE_SetMode() 
+{
+	tinyMCE.get(sys_eidC).remove();
+	
+	var bn = $('#MCE_bnMode');
+	if ( sys_mce_mode == 'G' ) {
+		sys_mce_mode = 'A';
+		new tinyMCE.Editor(sys_eidC, tmssA).render(1);
+	}
+	else {
+		sys_mce_mode = 'G';
+		new tinyMCE.Editor(sys_eidC, tmssG).render(1);
+	}
+	ed = tinyMCE.get(sys_eidC);
+	ed.focus();
+	
+	MCE_SetBnMode();
+}
+// TinyMCE -- end
+
+
+$(document).ready( function() {
+	// 產生編輯器
+	tinyMCE.init(tmssG);
+	// 插入 "一般" 及 "進階" 選項.
+	MCE_SetBnMode();
+	
+});
+
+function BnSave() 
+{
+	// ooki_meta_getContent: 取得 meta 資料
+	// ooki_getContent: 取得 編輯內容.
+	var sC = ooki_meta_getContent() + ooki_getContent(sys_eidC);
+	alert(sC);
+}
+
+</script>
+</head>
+<body>
+
+Ooki 編輯器：Test2
+<textarea id=txtContent name=txtContent class="mceEditor" style="width:100%; height:300px;"></textarea>
+<input type=button value="送出" onclick="BnSave();">&nbsp;&nbsp;&nbsp;
+<input type=button value="取消" onclick="BnCancel();">
+
+</body>
+</html>

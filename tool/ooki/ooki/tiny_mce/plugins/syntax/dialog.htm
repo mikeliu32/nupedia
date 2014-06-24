@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#syntax_dlg.title}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="js/dialog.js"></script>
+	<link rel="stylesheet" href="css/dialog.css" type="text/css"/>
+</head>
+<body>
+
+<form onsubmit="SyntaxDialog.insert();return false;" action="#"> 
+	<textarea id="code_box" name="code_box" type="text" class="text" /></textarea>
+	<p/>
+	{#syntax_dlg.code_language}
+	<!--input id="language" name="language" type="text" class="text" /></p-->
+	<select id="language" name="language">
+		<option value="cpp">	C/C++		</option>
+		<option value="php">	PHP			</option>
+		<option value="js">		Javascript	</option>
+		<option value="css">	CSS			</option>
+	</select>
+	<div class="mceActionPanel">
+		<input type="button" id="insert" name="insert" value="{#insert}" onclick="SyntaxDialog.insert();" />
+		<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+	</div>
+</form>
+
+</body>
+</html>

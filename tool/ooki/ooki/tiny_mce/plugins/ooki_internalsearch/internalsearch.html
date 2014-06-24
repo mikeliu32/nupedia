@@ -1,0 +1,83 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#ooki_internalsearch_dlg.title}</title>
+<style>
+form {1margin: 0px;}
+.se_pages { margin-top: 5px; margin-bottom: 20px; font-size: 1em; text-align: center; }
+.se_pages a, .se_pages span { display: inline-block; cursor: pointer; padding: 3px 5px; text-decoration: none; margin-right: 5px; }
+.se_pages .btn_n { border: solid 1px #C0C0C0; }
+.se_pages .btn_n:hover { border: solid 1px #666; }
+.se_pages .btn_s:hover { text-decoration: underline; }
+.se_pages .btn_sel { color: #000; font-weight:bold; text-decoration: underline; }
+</style>
+	<script type="text/javascript" src="../../jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="../../utils/mctabs.js"></script>
+	<script type="text/javascript" src="../../utils/form_utils.js"></script>
+	<script type="text/javascript" src="../../utils/validate.js"></script>
+	<script type="text/javascript" src="internalsearch.js"></script>
+</head>
+<body>
+    <form onsubmit="InternalSearchDialog.insert();return false;" action="#">
+		<div id="tabs" class="tabs">
+			<ul>
+				<li id="general_tab" class="current"><span><a href="javascript:InternalSearchDialog.displayTab('general_tab','general_panel');" onmousedown="return false;">{#ooki_internalsearch_dlg.InternalSearch}</a></span></li>
+				<li id="file_tab"><span><a href="javascript:InternalSearchDialog.displayTab('file_tab','file_panel');" onmousedown="return false;">{#ooki_internalsearch_dlg.FileLine}</a></span></li>
+			</ul>
+		</div>
+
+		<div id="panels" class="panel_wrapper">
+		
+			<div id="general_panel" class="panel current" style="height:430px;">
+				<table width="100%" cellpadding="0" cellspacing="0" border="0">
+			       <tr><td height=50 valign=top>
+			       
+		   	         <fieldset><legend>{#ooki_internalsearch_dlg.InputKeyword}</legend>
+				       <input type="text" id=IS_Key value="" size="20" class="required number min1">
+		 			 </fieldset>
+		
+				  </td></tr>
+				  <tr><td height="1%">
+				    <fieldset><legend>{#ooki_internalsearch_dlg.Note}</legend>
+				      {#ooki_internalsearch_dlg.G_NoteC}
+				    </fieldset>		
+				  </td></tr>
+				</table>
+			</div>
+
+			<div id="file_panel" class="panel" style="height:430px;">
+				<table width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
+			      <tr><td height="20px" valign=top>
+			        
+			        <form id=file_form method=post action="/cgi-bin/internalSearch_mce.php" target="file_if">
+					  <input type=hidden name=tg_id value="file_if">
+					  <input type=hidden name=tg_u value="/cgi-bin/internalSearch_mce.php">
+					  <input type=hidden name=dir value="<? echo $sDir; ?>">
+			          <fieldset><legend>{#ooki_internalsearch_dlg.InputKeyword}</legend>
+				        <input type="text" id=q name=q value="" size="20" class="required number min1"> 
+				        <input type="button" value="{#ooki_internalsearch_dlg.Search}" onclick="InternalSearchDialog.OnBnSearch(); return false;">
+					  </fieldset>
+				    </form>
+				    
+				  </td></tr>
+			      <tr><td valign=top>
+			      
+			          <div id="file_Result" style="width:100%;height:100%;overflow:scroll;"></div> 
+					  
+				  </td></tr>
+				  <tr><td height="20px">
+				    <fieldset><legend>{#ooki_internalsearch_dlg.Note}</legend>
+				      {#ooki_internalsearch_dlg.NoteC}
+				    </fieldset>		
+				  </td></tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="bns" class="mceActionPanel">
+			<input type="submit" id="insert" name="insert" value="{#insert}" onclick="InternalSearchDialog.insert();" />
+			<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="InternalSearchDialog.OnBnClose();" />
+		</div>
+	</form>
+</body>
+</html>

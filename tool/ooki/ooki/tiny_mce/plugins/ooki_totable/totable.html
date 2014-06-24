@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{#ooki_totable.desc}</title>
+<style>
+</style>
+<script type="text/javascript" src="../../jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+<script type="text/javascript" src="../../utils/mctabs.js"></script>
+<script type="text/javascript" src="../../utils/form_utils.js"></script>
+<script type="text/javascript" src="../../utils/validate.js"></script>
+<script type="text/javascript" src="totable.js"></script>
+</head>
+<body>
+
+<table width="100%" height="100%" cellpadding=0 cellspacing=0 border=0>
+  <tr><td>
+	<fieldset style="height:100%;">
+		<table width="100%" height="100%" cellpadding=0 cellspacing=0 border=0>
+		  <tr><td id="totableTmpResTM">
+		  </td></tr>
+		  <tr><td height="1%">
+			{#ooki_totable.isok} <input id="bnOK" name="insert" align=absmiddle type=button  value="{#ooki_totable.beapply}">
+		  </td></tr>
+		</table>
+	</fieldset>
+  </td></tr>
+  <tr><td height="1%" style="padding-bottom:5px;">
+	<fieldset align="left"><legend>{#ooki_totable.t_usersign}</legend>
+		{#ooki_totable.t_signcol}<input type="text" id="totableColumSepTM" size="5"><br>
+		{#ooki_totable.t_signrow}<input type="text" id="totableRowSepTM" size="5"><br>
+		{#ooki_totable.note}
+		<div align=center><input id="bnResetRes" type=button value="{#ooki_cmn.update}"></div>
+	</fieldset>
+  </td></tr>
+</table>
+
+</body>
+</html>

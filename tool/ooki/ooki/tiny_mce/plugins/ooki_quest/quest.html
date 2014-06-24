@@ -1,0 +1,38 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{#ooki_quest.caption}</title>
+<style>
+seResult { overflow:hidden; }
+</style>
+<script type="text/javascript" src="/js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+<script type="text/javascript" src="../../utils/mctabs.js"></script>
+<script type="text/javascript" src="../../utils/form_utils.js"></script>
+<script type="text/javascript" src="../../utils/validate.js"></script>
+<script type="text/javascript" src="../plugin_src.js"></script>
+<script type="text/javascript" src="quest.js"></script>
+</head>
+<body>
+
+<table width="100%" height="99%" cellpadding=0 cellspacing=0 border=0>
+  <tr><td height="1%" valign="top" style="padding-bottom:5px;">
+  
+	<fieldset><legend>{#ooki_quest.t_key}</legend>
+	  &nbsp;<input type="text" id="txtKey" value="" size="20" class="required number min1">
+	</fieldset>
+		
+  </td></tr>
+  <tr><td width="100%" valign="top">
+  
+	<fieldset id="seItems"><legend>{#ooki_quest.t_selectlink}</legend>
+	</fieldset>
+	
+  </td></tr>
+  <tr><td height="1%" style="padding:7px;">
+	<input type="button" id="insert" name="insert" value="{#insert}" />
+	<input type="button" id="cancel" name="cancel" value="{#cancel}" />
+  </td></tr>
+</table>
+
+</body>
+</html>

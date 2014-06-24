@@ -1,0 +1,15 @@
+g_web	google web	http://www.google.com.tw/search?hl=zh-TW&q=<keyword>&meta=lang_zh-TW|lang_zh-CN&start=<page>	10
+g_news	google news	https://www.google.com/search?q=<keyword>&hl=zh-TW&gl=tw&tbm=nws&start=<page>	10
+g_img	google image	http://images.google.com.tw/images?q=<keyword>&hl=zh-TW	-1
+g_blog	google blog	http://www.google.com.tw/search?hl=zh-TW&tbm=blg&q=<keyword>&start=<page>	10
+g_scr	google scholar	http://scholar.google.com.tw/scholar?q=<keyword>&hl=zh-TW&ie=utf8&start=<page>	10
+
+y_web	yahoo web	http://tw.search.yahoo.com/search?p=<keyword>&fr=sfp&ei=UTF-8&rd=r1&n=10&b=<page>	10
+y_news	yahoo news	http://tw.news.search.yahoo.com/search?p=<keyword>&rd=pref&fr=yfp&fr2=sb-top&type=all&age=all&pstart=10&b=<page>	10
+y_img	yahoo image	http://tw.search.yahoo.com/search/images?fr=fp-tab-img-t&p=<keyword>&ei=utf-8&b=<page>	30
+y_vdo	yahoo video	http://tw.videos.search.yahoo.com/search/video?fr=yfp&ei=UTF-8&p=<keyword>&tnr=20&b=<page>	30
+
+t_vdo	YouTube video	http://tw.youtube.com/results?search_query=<keyword>&search_type=&aq=f&page=<page>	20
+
+f_img	flickr image	http://www.flickr.com/search/?q=<keyword>&page=<page>&z=e	60
+

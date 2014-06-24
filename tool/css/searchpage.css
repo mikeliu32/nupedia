@@ -1,0 +1,121 @@
+body{
+background-color: #eee;
+}
+
+.main-wrapper{
+margin: 0 auto;
+overflow:hidden;
+width: 90%;
+position: relative;
+}
+
+#searchFormWrap{
+text-align: center;
+border-bottom: 1px solid #ccc;
+}
+
+#searchForm{
+padding: 2em 0;
+}
+
+#searchForm-input{
+width: 40%;
+border: 1px solid rgba(0,0,0,0.2);
+padding: 4px 6px;
+font-size: 1.4em;
+line-height: 1.4em;
+}
+
+#searchForm button{
+font-size: 1.2em;
+color: #fff;
+background-color: #1b98f8;
+padding: 0.4em 1em;
+border-radius: 2px;
+border: 0;
+margin-left: 0.25em;
+line-height: 1.4em;
+vertical-align: top;
+}
+
+#searchResultPanel ul{
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+#searchResultPanel ul li{
+background-color: #fff;
+margin: 1em auto;
+width: 50%;
+padding: 1em;
+position: relative;
+display: block;
+}
+
+.sr-image{
+float:left;
+width: 200px;
+height: 200px;
+background-image: url('../../mozart.jpg');
+background-size: cover;
+}
+
+.sr-info{
+margin: 0.75em 0 0.75em 220px;
+}
+
+.sr-info .sr-info-title{
+font-size: 1.4em;
+}
+.sr-info .sr-info-extra{
+display: block;
+font-size: 0.9em;
+margin: 6px 0;
+color: #aaa;
+}
+
+.sr-info-extra a{
+color: #aaa;
+text-decoration: underline;
+}
+
+.sr-info .sr-info-abs{
+
+}
+
+.list-noitem{
+color: #aaa;
+display: block;
+margin: 4em;
+text-align: center;
+}
+
+#footerBtns{
+text-align: center;
+margin: 2em 0;
+}
+
+.footerBtn{
+display: inline-block;
+color: #fff;
+text-decoration: none;
+padding: 0.5em 2em;
+margin: 0.5em;
+border-radius: 5px;
+opacity: 0.6;
+transition: opacity 0.3s;
+width: 5em;
+}
+
+.footerBtn:hover{
+opacity: 0.8;
+text-decoration: none;
+}
+
+.footerBtn.save{
+background-color: green;
+}
+.footerBtn.cancel{
+background-color: red;
+}

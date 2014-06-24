@@ -1,0 +1,71 @@
+iframe.maskTM
+{
+        position:absolute;
+        top:0px;
+        left:0px;
+        filter:alpha(opacity=30);
+        opacity:30;
+        z-index:99;
+        display:none;
+}
+
+div.optTM
+{
+        position:absolute;
+        z-index:100;
+        display:none;
+        border:solid 1px black;
+        background-color:#D1E1E9;
+}
+
+iframe.emaskTM
+{
+        position:absolute;
+        top:0px;
+        left:0px;
+        filter:alpha(opacity=30);
+        opacity:30;
+        z-index:10;
+        display:none;
+}
+
+div.eoptTM
+{
+        position:absolute;
+        z-index:11;
+        border:solid 1px black;
+        background-color:#D1E1E9;
+}
+
+.ookiBGSound {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url(bgsound/images/bgsound_b.gif);
+	width: 32px;
+	height: 32px;
+	float: right;
+}
+
+.ookiPopupMask { position:absolute; z-index:100; left:0; top:0; width:100%; background:#000; opacity:0.3; -ms-filter:'alpha(opacity=30)'; filter:alpha(opacity=30); }
+.ookiPopup { position:absolute; z-index:500; width:100%; height:100%; text-align:center; }
+.ookiPopup td { vertical-align:middle; text-align:center; }
+.ookiPopupIn {
+	display: block;
+	padding: 5px;
+	border:solid 1px #FFF;
+	background-color:#E7E8DF;
+}
+.ookiPopupIn .bns-bottom {
+	text-align:right; 
+	padding:5px;
+}
+.ookiPopupIn2 {
+	z-index: 499; 
+	position: absolute; 
+	filter: alpha(opacity=50); 
+	background-color: #000; 
+	zoom: 1; 
+	display: block; 
+}
+
+.defaultSkin .mceSplitButton a.mceOpen {width:11px !important; height:22px;}

@@ -1,0 +1,17 @@
+{
+"title":"沃夫岡 阿瑪迪斯 莫札特",
+"image":"mozart.jpg",
+"name":"莫札特",
+"ename":"Wolfgang Amadeus Mozart",
+"meta":[
+{"name":"出生","value":"1756年1月27日<br>神聖羅馬帝國 奧地利 薩爾茨堡"},
+{"name":"逝世","value":"1791年12月5日(35歲)<br>神聖羅馬帝國 奧地利 維也納"},
+{"name":"所屬時期/樂派","value":"古典主義維也納古典樂派"},
+{"name":"擅長類型","value":"交響曲，協奏曲，室內樂，鋼琴音樂，宗教音樂，歌劇"},
+{"name":"師從","value":"利奧波德·莫札特"},
+{"name":"學生/受影響人物","value":"胡梅爾，蘇斯邁爾，安東寧·弗拉尼茨基"}
+],
+"author":"gaislab",
+"collaborator":"",
+"lastEdit":"2014/03/14 18:03:50"
+}

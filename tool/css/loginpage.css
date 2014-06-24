@@ -1,0 +1,71 @@
+body{
+background-color: #eee;
+}
+
+.main-wrapper{
+margin: 0 auto;
+overflow:hidden;
+width: 85%;
+max-width: 1200px;
+position: relative;
+}
+
+.card{
+padding: 4em 3em;
+background-color: #fff;
+box-sizing: border-box;
+width: 50%;
+max-width: 480px;
+margin: 2em auto;
+}
+
+.tipsTitle{
+text-align: center;
+}
+
+.stackForm{
+text-align: center;
+}
+
+.stackForm label{
+display: inline-block;
+box-sizing: border-box;
+width: 23%;
+padding:4px;
+font-size: 1.2em;
+text-align: left;
+}
+
+.stackForm input{
+display: inline-block;
+box-sizing: border-box;
+font-size: 1.2em;
+width: 75%;
+padding: 4px;
+border: 1px solid #ccc;
+border-radius: 2px;
+margin-bottom: 2em;
+}
+
+.stackForm button{
+font-size: 1.2em;
+color: #fff;
+background-color: #1b98f8;
+padding: 0.4em 1em;
+border-radius: 2px;
+border: 0;
+margin-left: 0.25em;
+line-height: 1.4em;
+vertical-align: top;
+}
+
+.loginMsg{
+display: none;
+font-size: 1em;
+margin: 0.5em 0;
+color: red;
+}
+
+.loginMsg-success{
+color: green;
+}

@@ -1,0 +1,36 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{#ooki_youtube.caption}</title>
+<style>
+seResult { overflow:hidden; }
+#txtC { width:100%; height:100%; }
+</style>
+<script type="text/javascript" src="/js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+<script type="text/javascript" src="../../utils/mctabs.js"></script>
+<script type="text/javascript" src="../../utils/form_utils.js"></script>
+<script type="text/javascript" src="../../utils/validate.js"></script>
+<script type="text/javascript" src="../plugin_src.js"></script>
+<script type="text/javascript" src="youtube.js"></script>
+</head>
+<body>
+
+<table width="100%" height="100%" cellpadding=0 cellspacing=0 border=0>
+  <tr><td height="1%" valign="top" style="padding:5px;">
+  
+	{#ooki_youtube.dlg_desc}
+		
+  </td></tr>
+  <tr><td valign="top" style="padding-bottom:5px;">
+  
+	<textarea id="txtC"></textarea>
+		
+  </td></tr>
+  <tr><td height="1%" style="padding:2px;">
+	<input type="button" id="insert" name="insert" value="{#insert}" />
+	<input type="button" id="cancel" name="cancel" value="{#cancel}" />
+  </td></tr>
+</table>
+
+</body>
+</html>

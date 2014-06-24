@@ -1,0 +1,116 @@
+html, body{
+font-size: 100%;
+font-family: '微軟正黑體','Open Sans', sans-serif;
+margin: 0;
+}
+
+p{
+line-height: 1.5em;
+}
+
+a{
+color:#3275B1;
+text-decoration:none;
+-webkit-transition: all 0.3s; /* For Safari 3.1 to 6.0 */
+transition: all 0.3s;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+
+.headerBar{
+background-color: #333;
+color: #fff;
+overflow: hidden;
+height: 44px;
+margin-bottom: 2em;
+}
+
+.headerBar .headerBar-logo{
+width: 120px;
+height: 36px;
+margin: 0 6px;
+padding: 0;
+display: inline-block;
+vertical-align: middle;
+}
+
+#headerBar-nav{
+list-style: none;
+margin: 12px 0;
+padding: 0;
+display: inline-block;
+vertical-align: middle;
+float: right;
+
+}
+
+#headerBar-nav li{
+display: inline-block;
+}
+
+#headerBar-nav li a{
+text-decoration: none;
+color: #fff;
+padding: 12px 8px;
+}
+
+#headerBar-nav li a.active, #headerBar-nav li a:hover{
+background-color: #444;
+}
+
+#headerBar-user{
+display: inline-block;
+float: right;
+}
+
+#headerBar-user a{
+color: #fff;
+background-color: rgba(248, 133, 27, 0.3);
+text-decoration: none;
+display: inline-block;
+padding: 11px 16px;
+transition: background-color 0.3s;
+}
+
+#headerBar-user a:hover{
+background-color: rgba(248, 133, 27, 0.7);
+}
+
+#headerBar-user a i{
+display: inline-block;
+vertical-align: middle;
+}
+
+#headerBar-user a span{
+display: inline-block;
+vertical-align: middle;
+}
+
+#headerBar-searchForm{
+display: inline-block;
+vertical-align: middle;
+margin: 10px 0;
+width: 20%;
+}
+
+#headerBar-searchInput{
+background-color: #555;
+border: 0;
+padding: 2px 10px;
+border-radius: 10px;
+width: 100%;
+}
+
+#headerBar-searchSubmit{
+display: none;
+}
+
+.errormsg{
+text-align: center;
+font-size: 1.2em;
+margin: 1em 0;
+}
+

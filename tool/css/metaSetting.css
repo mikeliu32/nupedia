@@ -1,0 +1,350 @@
+html, body{
+font-size: 100%;
+font-family: '微軟正黑體','Open Sans', sans-serif;
+}
+
+#leftPanelArea{
+width: 14em;
+position: fixed;
+top: 0;
+bottom: 0;
+left: 0;
+background-color:#222;
+color: #fff;
+}
+
+#contentArea{
+position: absolute;
+top: 0;
+bottom: 0;
+left: 14em;
+right: 0;
+padding: 1em 2.5em;
+overflow: auto;
+box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+z-index: 10;
+transition: right 0.3s;
+background-color:#fff;
+}
+
+form.sectionContent-editForm{
+display: inline-block;
+}
+
+form.sectionContent-editForm input:nth-child(2){
+display: none;
+}
+
+
+#leftPanel{
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 9em;
+overflow-y: auto;
+overflow-x: hidden;
+}
+
+.panelHeader h3, .panelHeader p{
+padding: 0 0.25em;
+margin: 0.8em 0;
+}
+
+.panelHeader-title{
+background-color:#111;
+color: #666;
+padding: 0.25em;
+font-weight: bold;
+}
+
+.panelHeader-title-right{
+float: right;
+text-decoration: none;
+color:#666;
+font-size:0.8em;
+}
+
+.hint-invert{
+color: #555;
+font-size: 0.8em;
+margin: 0 4px;
+}
+
+.hint-invert.asBlock{
+display: block;
+margin: 0;
+}
+
+.setting-controls{
+padding: 1em;
+border-bottom: 1px solid #333;
+}
+
+.setting-label{
+display: inline-block;
+vertical-align: middle;
+line-height: 25px;
+}
+
+.setting-toggleSwitch{
+display: inline-block;
+vertical-align: middle;
+float:right;
+}
+
+.toggleSwitch{
+display: none;
+}
+
+input.toggleSwitch +label{
+display: block;
+position: relative;
+cursor: pointer;
+outline: none;
+user-select: none;
+width: 50px;
+height: 25px;
+border-radius: 25px;
+}
+
+input.toggleSwitch +label:before,
+input.toggleSwitch +label:after{
+display: block;
+position: absolute;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+content: "";
+}
+
+input.toggleSwitch +label:before{
+background-color: #555;
+border-radius: 25px;
+transition: background 0.4s;
+}
+
+input.toggleSwitch +label:after{
+width: 50%;
+background-color: #eee;
+border-radius: 100%;
+box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+transition: margin 0.4s;
+}
+
+input.toggleSwitch:checked +label:before{
+background-color: green;
+}
+
+input.toggleSwitch:checked+label:after{
+margin-left: 25px;
+}
+
+
+#sectionTabs{
+list-style: none;
+padding:0;
+margin:0;
+}
+
+#sectionTabs a{
+display: block;
+padding: 0 1em;
+border-bottom: 1px solid #333;
+text-decoration: none;
+color: #fff;
+line-height: 2.8em;
+}
+
+#sectionTabs a:hover, #sectionTabs a.active{
+background-color: #555;
+}
+
+#sectionTabs .placeholder{
+height:2.8em;
+background-color: #1b98f8;
+opacity: 0.2;
+}
+
+#leftPanelBtns{
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+text-align: center;
+margin: 1em 0;
+}
+
+.leftPanelBtn{
+display: block;
+color: #fff;
+text-decoration: none;
+padding: 0.5em;
+margin: 0.5em 1em;
+border-radius: 5px;
+opacity: 0.6;
+transition: opacity 0.3s;
+}
+
+.leftPanelBtn:hover{
+opacity: 0.8;
+}
+
+.leftPanelBtn.save{
+background-color: green;
+}
+.leftPanelBtn.cancel{
+background-color: red;
+}
+
+.sectionContent{
+display: none;
+}
+
+a.sectionContent-EditDir{
+text-decoration: none;
+color: rgba(255, 101, 0, 0.5);
+font-size: 0.8em;
+margin-left: 0.5em;
+}
+
+.sectionContent textarea{
+width:80%;
+height:300px;
+}
+
+#metaEditArea{
+position: relative;
+}
+
+#editImage{
+display:inline-block;
+}
+#origin-img{
+background-color: #eee;
+display: inline-block;
+padding: 1em;
+position: relative;
+}
+
+#origin-img img{
+width: 200px;
+}
+
+#uploadImageStatus{
+position: absolute;
+top: 40%;
+right: 0;
+left: 0;
+text-align: center;
+line-height: 3em;
+background-color: #000;
+color: #fff;
+opacity: 0.6;
+display:none;
+}
+
+#uploadImageForm{
+display: block;
+}
+
+#uploadImageForm input:first-child{
+border: 1px solid #ccc;
+padding: 4px 6px;
+margin: 1em 0 1em 0;
+width: 220px;
+border-radius: 5px;
+}
+
+#uploadImageForm input:nth-child(2){
+color: #fff;
+background-color: #1b98f8;
+padding: 0.5em;
+border-radius: 5px;
+border: 0;
+display:block;
+}
+
+#editMeta{
+position: absolute;
+top: 0;
+left:250px;
+right: 0;
+margin: 0 2em 2em 2em;
+}
+
+#updateMetaForm{
+width: 80%;
+}
+
+#colHeader{
+border-bottom: 1px solid #555;
+margin: 1.5em 0 1em 0;
+padding: 0.5em 0;
+}
+
+#colHeader h3{
+display: inline-block;
+margin: 0;
+}
+#colHeader span{
+background-color: #333;
+border-radius: 5px;
+color: #fff;
+cursor: pointer;
+font-size: 0.8em;
+padding: 3px 4px;
+margin-left: 0.25em;
+display: inline-block;
+vertical-align: bottom;
+}
+
+.col-group{
+position: relative;
+}
+
+.col-group:hover .metaCol-panel{
+display: initial;
+}
+
+#updateMetaForm label{
+display: block;
+margin: 0.5em 0;
+}
+
+.metaCol-panel{
+position:absolute;
+right: -1.2em;
+display: none;
+}
+
+.metaCol-panel i{
+background-color: #333;
+color: #fff;
+padding: 3px 4px;
+cursor: pointer;
+border-right: 1px solid #555;	
+}
+
+.metaCol-panel i:hover{
+background-color: #555;
+}
+
+.metaCol-panel i:first-child{
+border-radius: 4px 0 0 4px;
+}
+.metaCol-panel i:last-child{
+border-radius: 0 4px 4px 0;
+border-right: 0px;
+}
+
+
+#updateMetaForm input{
+border: 1px solid #ccc;
+padding: 0.5em 0.6em;
+border-radius: 5px;
+display: block;
+width: 100%;
+}
+

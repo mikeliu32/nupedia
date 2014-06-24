@@ -1,0 +1,269 @@
+html, body{
+font-size: 100%;
+font-family: '微軟正黑體','Open Sans', sans-serif;
+}
+
+#leftPanelArea{
+width: 14em;
+position: fixed;
+top: 0;
+bottom: 0;
+left: 0;
+background-color:#222;
+color: #fff;
+}
+
+#contentArea{
+position: fixed;
+top: 0;
+bottom: 0;
+left: 14em;
+right: 20em;
+padding: 1em 1.5em;
+overflow: auto;
+box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+z-index: 10;
+transition: right 0.3s;
+background-color:#fff;
+}
+
+form.sectionContent-editForm{
+display: inline-block;
+}
+
+form.sectionContent-editForm input:nth-child(2){
+display: none;
+}
+
+
+#searchPanelArea{
+width: 20em;
+position: fixed;
+top: 0;
+bottom: 0;
+right: 0;
+background-color:#222;
+color: #fff;
+}
+
+#leftPanel{
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 9em;
+overflow-y: auto;
+overflow-x: hidden;
+}
+
+.panelHeader h3, .panelHeader p{
+padding: 0 0.25em;
+margin: 0.8em 0;
+}
+
+.panelHeader-title{
+background-color:#111;
+color: #666;
+padding: 0.25em;
+font-weight: bold;
+}
+
+.panelHeader-title-right{
+float: right;
+text-decoration: none;
+color:#666;
+font-size:0.8em;
+}
+
+.hint-invert{
+color: #555;
+font-size: 0.8em;
+margin: 0 4px;
+}
+
+.hint-invert.asBlock{
+display: block;
+margin: 0;
+}
+
+#sectionTabs{
+list-style: none;
+padding:0;
+margin:0;
+}
+
+#sectionTabs a{
+display: block;
+padding: 0 1em;
+border-bottom: 1px solid #333;
+text-decoration: none;
+color: #fff;
+line-height: 2.8em;
+}
+
+#sectionTabs a:hover, #sectionTabs a.active{
+background-color: #555;
+}
+
+#sectionTabs .placeholder{
+height:2.8em;
+background-color: #1b98f8;
+opacity: 0.2;
+}
+
+#leftPanelBtns{
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+text-align: center;
+margin: 1em 0;
+}
+
+.leftPanelBtn{
+display: block;
+color: #fff;
+text-decoration: none;
+padding: 0.5em;
+margin: 0.5em 1em;
+border-radius: 5px;
+opacity: 0.6;
+transition: opacity 0.3s;
+}
+
+.leftPanelBtn:hover{
+opacity: 0.8;
+}
+
+.leftPanelBtn.save{
+background-color: green;
+}
+.leftPanelBtn.cancel{
+background-color: red;
+}
+
+.sectionContent{
+display: none;
+}
+
+a.sectionContent-EditDir{
+text-decoration: none;
+color: rgba(255, 101, 0, 0.5);
+font-size: 0.8em;
+margin-left: 0.5em;
+}
+
+.sectionContent textarea{
+width:80%;
+height:300px;
+}
+
+#searchPanelArea input{
+background-color: #444;
+border: none;
+display: inline-block;
+width: 18em;
+margin: 1em;
+color: #aaa;
+line-height: 1.8em;
+border-radius: 5px;
+padding: 0 0.25em;
+}
+
+#searchForm input:nth-child(2){
+display: none;
+}
+
+#searchTypeBtns{
+list-style:none;
+margin:1em;
+padding:0;
+border-bottom: 1px solid #333;
+}
+
+#searchTypeBtns li{
+display:inline-block;
+}
+
+#searchTypeBtns a{
+color: #fff;
+display: block;
+text-decoration:none;
+border-bottom: 4px solid transparent;
+transition: border-bottom 0.3s;
+margin: 0 0.25em;
+}
+
+#searchTypeBtns a:hover, #searchTypeBtns a.active{
+border-bottom: 4px solid #1b98f8;
+}
+
+#searchResultArea{
+position: absolute;
+top: 11em;
+bottom: 0;
+left: 1em;
+right: 0;
+padding-right: 15px;
+overflow-x: auto;
+}
+
+.searchResultContent{
+margin-bottom: 1em;
+}
+
+.searchResultContent ul{
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.searchResultContent ul li{
+display: block;
+padding: 0.5em 0;
+border-bottom: 1px solid #333;
+}
+
+.searchResultContent .sr-title{
+color: #3275B1;
+}
+
+.searchResultContent .sr-src{
+display: block;
+font-size: 0.8em;
+color: #eee;
+margin-top: 2px;
+}
+
+.searchResultContent .sr-desc{
+font-size: 0.8em;
+margin: 4px 0;
+padding: 0;
+color: #aaa;
+}
+
+.searchResultContentPic .sr-img{
+width: 60px;
+height: 60px;
+background-size: cover;
+display: inline-block;
+vertical-align: middle;
+}
+
+.searchResultContentPic .sr-header{
+display: inline-block;
+vertical-align: middle;
+margin-left: 0.5em;
+}
+
+.Collage{
+padding-left: 2px;
+}
+.searchResultContent img{
+/*border: 0;
+width: 48%;
+margin: 2px;
+float: left;
+*/
+vertical-align: bottom;
+}

@@ -1,0 +1,313 @@
+html, body{
+font-size: 100%;
+font-family: '微軟正黑體','Open Sans', sans-serif;
+}
+
+
+#leftPanelArea{
+width: 14em;
+position: fixed;
+top: 0;
+bottom: 0;
+left: 0;
+background-color:#222;
+color: #fff;
+}
+
+#contentArea{
+position: absolute;
+top: 0;
+bottom: 0;
+left: 14em;
+right: 20em;
+padding: 0 4em 2em 4em;
+overflow-y: scroll;
+box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+z-index: 10;
+transition: right 0.3s;
+background-color:#fff;
+}
+
+#contentArea a{
+color:#3275B1;
+text-decoration:none;
+-webkit-transition: all 0.3s; /* For Safari 3.1 to 6.0 */
+transition: all 0.3s;
+}
+
+#contentArea a:hover{
+text-decoration: underline;
+}
+
+
+#searchPanelArea{
+width: 20em;
+position: fixed;
+top: 0;
+bottom: 0;
+right: 0;
+background-color:#222;
+color: #fff;
+}
+
+#leftPanel{
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 9em;
+overflow-y: auto;
+overflow-x: hidden;
+}
+
+.panelHeader h3, .panelHeader p{
+padding: 0 0.25em;
+margin: 0.8em 0;
+}
+
+.panelHeader-title{
+background-color:#111;
+color: #666;
+padding: 0.25em;
+font-weight: bold;
+}
+
+.panelHeader-title-right{
+float: right;
+text-decoration: none;
+color:#666;
+font-size:0.8em;
+}
+
+.hint-invert{
+color: #555;
+font-size: 0.8em;
+margin: 0 4px;
+}
+
+.hint-invert.asBlock{
+display: block;
+margin: 0;
+}
+
+#leftPanelBtns{
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+text-align: center;
+margin: 1em 0;
+}
+
+.leftPanelBtn{
+display: block;
+color: #fff;
+text-decoration: none;
+padding: 0.5em;
+margin: 0.5em 1em;
+border-radius: 5px;
+opacity: 0.6;
+transition: opacity 0.3s;
+}
+
+.leftPanelBtn:hover{
+opacity: 0.8;
+}
+
+.leftPanelBtn.save{
+background-color: green;
+}
+.leftPanelBtn.cancel{
+background-color: red;
+}
+
+
+#dirViewer-header{
+position: fixed;
+top: 0;
+left: 14em;
+right: 20em;
+padding: 2em 4em 0 4em;
+margin-right: 17px;
+background-color: #fff;
+}
+
+#dirViewer-content{
+margin-top: 6em;
+}
+
+#dirBreadcrumb{
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+#dirBreadcrumb li{
+display: inline-block;
+}
+
+#dirBreadcrumb li:nth-child(n+2):before{
+font-family: 'icomoon';
+content:"\f105";
+color: #aaa;
+padding: 0 4px;
+}
+
+#dirViewerListHeader{
+display: table;
+width: 100%;
+margin-top: 1em;
+padding:0 2px 0.5em 2px;
+border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+#dirViewerListHeader span{
+display: table-cell;
+color: #aaa;
+font-size: 0.8em;
+}
+
+#dirViewerList{
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+#dirViewerList li{
+padding: 0 2px;
+border-bottom: 1px solid rgba(0,0,0,0.1);
+display: table;
+width: 100%;
+}
+
+#dirViewerList li:hover, #dirViewerList li.active{
+background-color: rgba(27, 152, 248, 0.15);
+}
+
+#dirViewerList span{
+display: table-cell;
+vertical-align: middle;
+height: 3.5em;
+}
+
+span.viewerListCol-icon i{
+font-size: 1.4em;
+color: rgba(255, 101, 0, 0.5);
+}
+
+span.viewerListCol-icon{
+width: 3%;
+}
+
+span.viewerListCol-name{
+width: 40%;
+}
+span.viewerListCol-type{
+width: 20%;
+}
+span.viewerListCol-updateTime{
+width: 37%;
+}
+
+#fUploadStatusList{
+display:none;
+position: fixed;
+bottom: 0;
+left: 14em;
+right: 20em;
+padding: 0.5em 4em;
+background-color: rgba(27, 152, 248, 0.15);
+}
+#fUploadStatusList ul{
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+#fUploadStatusList li{
+padding: 8px;
+background-color: rgba(27, 152, 248, 0.2);
+margin: 8px;
+transition: background-color 0.3s;
+}
+
+span.fUploadStatus-info{
+color: #555;
+font-size: 0.8em;
+margin: 0 6px;
+}
+
+span.fUploadStatus-progress
+{
+display: block;
+height: 4px;
+margin: 4px 0;
+background-color: rgba(27, 152, 248, 0.8);
+transition: background-color 0.3s;
+}
+
+#fUploadStatusList li.done{
+background-color: rgba(4, 216, 13, 0.3);
+}
+
+#fUploadStatusList li.done span.fUploadStatus-progress{
+background-color: rgba(4, 216, 13, 0.8);
+}
+
+#dragFileWindow{
+position: fixed;
+top: 0;
+bottom: 0;
+left: 14em;
+right: 20em;
+text-align: center;
+border: 6px solid #1b98f8;
+background-color: rgba(27, 152, 248, 0.1);
+z-index: 100;
+display: none;
+}
+
+#dragFileWindow span{
+display: inline-block;
+margin: 1em;
+padding: 1em;
+color: #fff;
+font-weight: bold;
+background-color: rgba(27, 152, 248, 0.7);
+}
+
+#searchPanelArea input{
+background-color: #444;
+border: none;
+display: inline-block;
+width: 18em;
+margin: 1em;
+color: #aaa;
+line-height: 1.8em;
+border-radius: 5px;
+padding: 0 0.25em;
+}
+
+#searchTypeBtns{
+list-style:none;
+margin:1em;
+padding:0;
+border-bottom: 1px solid #333;
+}
+
+#searchTypeBtns li{
+display:inline-block;
+}
+
+#searchTypeBtns a{
+color: #fff;
+display: block;
+text-decoration:none;
+border-bottom: 4px solid transparent;
+transition: border-bottom 0.3s;
+margin: 0 0.25em;
+}
+
+#searchTypeBtns a:hover, #searchTypeBtns a.active{
+border-bottom: 4px solid #1b98f8;
+}

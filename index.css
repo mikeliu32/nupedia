@@ -1,0 +1,92 @@
+html, body{
+color: #fff;
+}
+
+.bg{
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+background-image: url('nupedia_bg.jpg');
+background-size: cover;
+z-index: -10;
+}
+
+.main-wrapper{
+margin: 0 auto;
+width: 30%;
+min-width: 600px;
+margin-top: 15%;
+text-align: center;
+}
+
+.searchForm input[type="text"]{
+color: #000;
+border: 0;
+width: 96%;
+line-height: 1.8em;
+margin: 1em 0;
+padding: 0 2%;
+font-size: 1.5em;
+}
+
+.searchForm input[type="submit"]{
+font-size: 1.2em;
+color: #fff;
+background-color: #1b98f8;
+padding: 0.4em 1em;
+border-radius: 2px;
+border: 0;
+margin: 0;
+line-height: 1.4em;
+vertical-align: top;
+}
+
+nav{
+position: absolute;
+top: 0;
+right: 0;
+margin: 0 4em;
+}
+
+nav ul{
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+nav li{
+display: inline-block;
+margin: 1em 0;
+}
+
+nav li a{
+padding: 6px;
+display: inline-block;
+color: #fff;
+text-decoration: none;
+opacity: 0.6;
+transition: opacity 0.3s;
+}
+
+nav li a:hover{
+opacity: 1;
+text-decoration: none;
+}
+
+footer{
+position: absolute;
+bottom: 2em;
+left: 0;
+right: 0;
+text-align: center;
+font-size: 0.8em;
+opacity: 0.6;
+color: #fff;
+}
+
+footer a{
+color: #fff;
+text-decoration: underline;
+}

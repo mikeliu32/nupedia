@@ -1,0 +1,75 @@
+body 
+{
+	background-color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+td {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+
+.ookiPopup { position:absolute; left:0; top:0; width:100%; height:100%; background:#FFF; opacity:0.6; -ms-filter:'alpha(opacity=60)'; filter:alpha(opacity=60); border:solid 1px #000; }
+
+span.annotatedTM
+{
+	border-bottom:solid 1px #cc9900;
+}
+
+span.leftibTM
+{
+	float:left;
+	border:1px solid black;
+	padding:3px;
+}
+
+span.rightibTM {
+	float:right;
+	border:1px solid black;
+	padding:3px;
+}
+
+.abstractTM, .ookiAbstractTM {
+	border:1px solid #3333FF;
+	margin:5px;
+	padding:5px;
+}
+
+.ookiRSDirTableTM, ookiRSDirTable {
+	width: 100%;
+	height: 100px;
+	background-image: url('ooki_rs_dirtable/images/table.gif');
+	border: 1px dotted #cc0000;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #ffffcc;
+}
+
+.ookiBGSound {
+	background-position: center;
+	background-repeat: no-repeat;
+	float: right;
+}
+
+.ookiHideContentC {
+	border: 1px dotted #cc0000;
+	background-color: #ffffcc;
+}
+
+.ooki_hidecontentTM {
+	border-bottom: solid 1px #F00;
+}
+
+.ookiBGSoundTM {
+	background-position: center;
+	background-repeat: no-repeat;
+	float: right;
+}
+
+.mceItemYouTube {border:1px dotted #cc0000; background-position:center; background-repeat:no-repeat; background-color:#ffffcc;}
+.mceItemYouTube {background-image:url(ooki_youtube/images/youtube.gif);}
+
+pre {
+	border:solid 1px #999999;
+	padding:10px;
+}
