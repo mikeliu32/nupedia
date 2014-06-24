@@ -1,6 +1,6 @@
 <?php
 include_once('inc/auth.php');
-require_once('pathManage.php');
+include_once('pathManage.php');
 
 
 $IS_ENTRY_EXIST = (strlen($sitePath)>1 && strlen($entryID)>1 && is_dir($dataHome.$sitePath));
@@ -15,6 +15,9 @@ if($IS_ENTRY_EXIST){
 	$contentfile = $dataHome.$sitePath."/content.json";
 	$article = json_decode(file_get_contents($contentfile));
 
+	if($IS_LOGIN)
+		$IS_AUTHOR = isAuthor($metainfo->author);
+	
 }
 //$image = $json[$user] = array("first" => $first, "last" => $last);
 //
@@ -94,7 +97,13 @@ require_once('header.php');
 	</div>
 
 	<div class="asidebox-content infobox-infotable">
+<?php
+		if($IS_AUTHOR):
+?>
 		<a id="editMetaBtn" href="metaSetting.php?site=<?php echo urlencode($sitePath);?>"><i class="icon-cog"></i> 設定</a>
+<?php
+		endif;
+?>
 		<p class="infobox-name"><?php echo $metainfo->title;?></p>
 		<p class="infobox-name"><?php echo $metainfo->etitle;?></p>
 	
@@ -177,7 +186,13 @@ require_once('header.php');
 <header id="arti-header">
 <div>
 <h1 id="article-title"><?php echo $metainfo->title;?></h1>
+<?php
+		if($IS_AUTHOR):
+?>
 <a href="editArticle.php?site=<?php echo $sitePath;?>"><i class="section-header-edit"></i>[編輯]</a>
+<?php
+		endif;
+?>
 </div>
 
 <div class="article-abstract article-section">
@@ -193,7 +208,13 @@ require_once('header.php');
 <section class="article-section" id="arti-sec<?php echo $section->secOrder;?>">
 <div class="section-header">
 <h2><?php echo $section->secName;?></h2>
+<?php
+		if($IS_AUTHOR):
+?>
 <a href="editArticle.php?site=<?php echo $sitePath;?>&secID=<?php echo $section->secOrder;?>" class="section-header-edit">[編輯]</a>
+<?php
+		endif;
+?>
 </div>
 <?php echo $section->content;?>
 </section>

@@ -1,17 +1,20 @@
 <?php
 date_default_timezone_set('Asia/Taipei');
-require_once('pathManage.php');
 
-$metafile = $dataHome.$sitePath."/metainfo.json";
-$metainfo = json_decode(file_get_contents($metafile));
+include_once('inc/auth.php');
+include_once('pathManage.php');
 
-$meta = $metainfo->meta;
+	$metafile = $dataHome.$sitePath."/metainfo.json";
+	$metainfo = json_decode(file_get_contents($metafile));
 
-$historyFile = $dataHome.$sitePath."/history.json";
-$history = json_decode(file_get_contents($historyFile));
-//$image = $json[$user] = array("first" => $first, "last" => $last);
-//
-//file_put_contents($file, json_encode($json));
+	$meta = $metainfo->meta;
+
+	$historyFile = $dataHome.$sitePath."/history.json";
+	$history = json_decode(file_get_contents($historyFile));
+
+	if($IS_LOGIN)
+		$IS_AUTHOR = isAuthor($metainfo->author);
+
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +49,13 @@ require_once('header.php');
 	</div>
 
 	<div class="asidebox-content infobox-infotable">
+<?php
+		if($IS_AUTHOR):
+?>
 		<a id="editMetaBtn" href="metaSetting.php?site=<?php echo urlencode($sitePath);?>"><i class="icon-cog"></i> 設定</a>
+<?php
+		endif;
+?>
 		<p class="infobox-name"><?php echo $metainfo->title;?></p>
 		<p class="infobox-name"><?php echo $metainfo->etitle;?></p>
 	
@@ -128,14 +137,16 @@ require_once('header.php');
 					$descStr.="恢復成先前版本(".$record->fromVer."版本)";
 					break;
 			}
-		
+
 			$recordStr = "<li><i class=\"icon-clock\"></i>".$descStr;
 			
 			if($i==count($history->history)-1)
-				$recordStr.="<span class=\"curVersion-flag\">目前版本</span></li>";
-			else
-				$recordStr.= "<a class=\"recover-btn\" href=\"versionPreview.php?site=".$sitePath."&ver=".$record->date."\"><i class=\"icon-history\"></i>回復此版本</a></li>";
-				
+				$recordStr.="<span class=\"curVersion-flag\">目前版本</span>";
+			else if($IS_AUTHOR)
+				$recordStr.= "<a class=\"recover-btn\" href=\"versionPreview.php?site=".$sitePath."&ver=".$record->date."\"><i class=\"icon-history\"></i>回復此版本</a>";
+			
+			$recordStr.="</li>";
+			
 			echo $recordStr;
 		}
 
