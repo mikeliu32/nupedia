@@ -1,4 +1,5 @@
 <?php
+include_once('inc/auth.php');
 $resultAry=array();
 
 if(isset($_GET['q'])&&$_GET['q']!=NULL){

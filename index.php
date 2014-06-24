@@ -1,3 +1,7 @@
+<?php
+include_once('tool/inc/auth.php');
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +25,17 @@
 <ul>
     <li><a href="#">分類瀏覽</a></li>
     <li><a href="#">熱門條目</a></li>
-    <li><a href="#">登入</a></li>
+<?php
+	if($IS_LOGIN):
+?>
+		<li><a href="tool/user.php?u=<? echo $USER_ID;?>"><?php echo $USER_ID;?></a></li>
+<?php
+	else:
+?>
+		<li><a href="tool/login.php">登入</a></li>
+<?php
+	endif;
+?>
 </ul>
 </nav>
 <main class="main-wrapper">
