@@ -255,7 +255,7 @@ $(document).ready( function() {
 	
 	$('#exitBtn').click(function(e){
 		e.preventDefault();
-		window.location = 'index.php?site=<?php echo $sitePath;?>'
+		window.location = 'index.php?site=<?php echo $sitePath;?>';
 	
 	});
 

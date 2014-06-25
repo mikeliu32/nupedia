@@ -62,36 +62,42 @@ require_once('header.php');
 $( document ).ready(function() {
 
 
-$("#saveBtn").click(function(e){
-	e.preventDefault();
+	$("#saveBtn").click(function(e){
+		e.preventDefault();
+		
+		var newEntryTitle = $("#newEntryTitle").val();
+		
+		var request = $.ajax({
+		  url: "forkEntry_process.php?site=<?php echo $sitePath;?>",
+		  type: "POST",
+		  data: { newEntryTitle: newEntryTitle, sAuthor : '<?php echo $entryAuthor;?>', sTitle: '<?php echo $entryTitle;?>'},
+		  dataType: "json"
+		});
+		 
+		request.done(function( jData ) {
+
+			if(jData.status=='ok'){
+
+				e.preventDefault();
+				window.location = 'index.php?site='+jData.redirectEntrySite;
+			}
+			else{
+
+			}
+		});
+		 
+		request.fail(function( jqXHR, textStatus ) {
+		  alert( "Request failed: " + textStatus );
+		});	
+
 	
-	var newEntryTitle = $("#newEntryTitle").val();
-	
-	var request = $.ajax({
-	  url: "forkEntry_process.php?site=<?php echo $sitePath;?>",
-	  type: "POST",
-	  data: { newEntryTitle: newEntryTitle, sAuthor : '<?php echo $entryAuthor;?>', sTitle: '<?php echo $entryTitle;?>'},
-	  dataType: "json"
 	});
-	 
-	request.done(function( jData ) {
 
-		if(jData.status=='ok'){
-
-			e.preventDefault();
-			window.location = 'index.php?site='+jData.redirectEntrySite;
-		}
-		else{
-
-		}
-	});
-	 
-	request.fail(function( jqXHR, textStatus ) {
-	  alert( "Request failed: " + textStatus );
-	});	
-
+	$('#exitBtn').click(function(e){
+		e.preventDefault();
+		window.location = 'index.php?site=<?php echo $sitePath;?>';
 	
-});
+	});
 
 
 });
