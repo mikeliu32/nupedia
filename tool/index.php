@@ -50,6 +50,16 @@ else{
 </head>
 
 <body>
+<!-- FB JS Library-->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <?php
 require_once('header.php');
 ?>
@@ -165,7 +175,6 @@ require_once('header.php');
 <div class="main-content">
 <article class="main-article">
 <header id="arti-header">
-<div>
 <h1 id="article-title"><?php echo $metainfo->title;?></h1>
 <?php
 		if($IS_AUTHOR):
@@ -174,6 +183,11 @@ require_once('header.php');
 <?php
 		endif;
 ?>
+<div class="socialPanel">
+<a class="socialBtn">收藏</a>
+<a class="socialBtn" href="forkEntry.php?site=<?php echo $sitePath;?>">建立分支條目</a>
+<!-- FB Share Btn -->
+<div class="fb-like" data-href="http://gaislab.cs.ccu.edu.tw/~yml101/nupedia/tool/index.php?site=<?php echo $sitePath;?>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
 </div>
 
 <div class="article-abstract article-section">

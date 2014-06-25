@@ -4,7 +4,8 @@ $dataHome = '../npdata/';
 if(isset($_GET['site'])){
 	
 	$sitePath = $_GET['site'];
-	$siteTok = explode("/",$sitePath); 
+	$siteTok = explode("/",$sitePath);
+	$authorID = $siteTok[0];
 	$entryID = $siteTok[1];
 }
 else{

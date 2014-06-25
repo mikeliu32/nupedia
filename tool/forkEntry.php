@@ -6,7 +6,8 @@ if($IS_LOGIN && $IS_ENTRY_EXIST){
 
 	$metafile = $dataHome.$sitePath."/metainfo.json";
 	$metainfo = json_decode(file_get_contents($metafile));
-
+	
+	$entryAuthor = $metainfo->author;
 	$entryTitle = $metainfo->title;
 	$entryImage = $metainfo->image? $dataHome.$sitePath."/images/".$metainfo->image : "defaultPic.png";
 }
@@ -30,7 +31,7 @@ die();
 <!--script src="http://code.jquery.com/jquery-1.10.2.min.js"></script-->
 <script src="js/jquery-1.11.0.min.js"></script>
 
-<title>NuPedia</title>
+<title>建立分支條目 | NuPedia</title>
 </head>
 
 <body>
@@ -42,13 +43,13 @@ require_once('header.php');
 	<div class="card">
 		<img src="<?php echo $entryImage;?>"></img>
 		<h2><?php echo $entryTitle;?></h2>
-		<div class="author">mikeliu32</div>
+		<div class="author"><?php echo $entryAuthor;?></div>
 	</div>
 	<img src="fork.png" class="fork-img"/>
 	<div class="card forkTo">
 		<img src="defaultPic.png"></img>
-		<h2><input type="text" placeholder="輸入分支條目名稱"></input></h2>
-		<div class="author">mikeliu32</div>
+		<h2><input type="text" id="newEntryTitle" placeholder="輸入分支條目名稱"></input></h2>
+		<div class="author"><?php echo $USER_ID;?></div>
 	</div>
 	</div>
 	<div class="row">
@@ -61,6 +62,36 @@ require_once('header.php');
 $( document ).ready(function() {
 
 
+$("#saveBtn").click(function(e){
+	e.preventDefault();
+	
+	var newEntryTitle = $("#newEntryTitle").val();
+	
+	var request = $.ajax({
+	  url: "forkEntry_process.php?site=<?php echo $sitePath;?>",
+	  type: "POST",
+	  data: { newEntryTitle: newEntryTitle, sAuthor : '<?php echo $entryAuthor;?>', sTitle: '<?php echo $entryTitle;?>'},
+	  dataType: "json"
+	});
+	 
+	request.done(function( jData ) {
+
+		if(jData.status=='ok'){
+
+			e.preventDefault();
+			window.location = 'index.php?site='+jData.redirectEntrySite;
+		}
+		else{
+
+		}
+	});
+	 
+	request.fail(function( jqXHR, textStatus ) {
+	  alert( "Request failed: " + textStatus );
+	});	
+
+	
+});
 
 
 });
