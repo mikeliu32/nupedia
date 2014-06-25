@@ -1,7 +1,7 @@
 <?php
 session_start();
-$USER_ID = getUserId();
 $IS_LOGIN = isLogin();
+$USER_ID = getUserId();
 
 function getUserId(){
 

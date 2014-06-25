@@ -1,23 +1,21 @@
 <?php
 date_default_timezone_set('Asia/Taipei');
 
-/*
- chmod ( "npdata/mikeliu32/entry_538f2fe80c5c761601" , 0777 );
- chmod ( "npdata/mikeliu32/entry_538f2fe80c5c761601/files" , 0777 );
- chmod ( "npdata/mikeliu32/entry_538f2fe80c5c761601/files/pictures" , 0777 );
- chmod ( "npdata/mikeliu32/entry_538f2fe80c5c761601/files/videos" , 0777 );
- chmod ( "npdata/mikeliu32/entry_538f2fe80c5c761601/images" , 0777 );
-*/
+include_once('inc/auth.php');
+
+if(!$IS_LOGIN){
+	header("Location: error.php");
+	die();
+}
 
 if(isset($_GET['entryTitle'])){
  
 $dataRoot = "../npdata/";
-$userID = "mikeliu32";
 
 $newEntryTitle = $_GET['entryTitle'];
 
 $newEntryID = getRandomEntryID();
-$newEntryPath = $dataRoot.$userID."/".$newEntryID;
+$newEntryPath = $dataRoot.$USER_ID."/".$newEntryID;
 
 //make new entry root folder
 mkdir($newEntryPath, 0775);
@@ -46,7 +44,7 @@ $curTime = time();
 $createdDate_raw = date("Y-m-d\TH:i:s",$curTime);
 $createdDate = date("Y/m/d H:i:s",$curTime);
 
-$metaInfoJStr = getMetaInfoJsonStr($userID, $newEntryID, $newEntryTitle, $createdDate);
+$metaInfoJStr = getMetaInfoJsonStr($USER_ID, $newEntryID, $newEntryTitle, $createdDate);
 
 //create default matainfo File
 $fp = fopen($newEntryPath.'/metainfo.json', 'w');
@@ -60,14 +58,14 @@ fclose($fp);
 
 //create default history File
 $fp = fopen($newEntryPath.'/history.json', 'w');
-fwrite($fp, getHistoryJsonStr($userID, $createdDate_raw) );
+fwrite($fp, getHistoryJsonStr($USER_ID, $createdDate_raw) );
 fclose($fp);
 
 indexNewEntry($newEntryID, $metaInfoJStr);
 
 $response=array();
 $response['status']='ok';
-$response['redirectEntrySite']="$userID/$newEntryID";
+$response['redirectEntrySite']="$USER_ID/$newEntryID";
 
 echo json_encode($response);
 

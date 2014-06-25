@@ -1,3 +1,13 @@
+<?php
+include_once('inc/auth.php');
+
+if(!$IS_LOGIN){
+	header("Location: error.php");
+	die();
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,7 +117,6 @@ $("#saveBtn").click(function(e){
 	e.preventDefault();
 	
 	var newEntryTitle = $("#entryname-input").val();
-	alert(newEntryTitle);
 	
 	var request = $.ajax({
 	  url: "addEntry_process.php",
@@ -119,20 +128,12 @@ $("#saveBtn").click(function(e){
 	request.done(function( jData ) {
 
 		if(jData.status=='ok'){
-		/*
-			$("#saveStatus").html("最後編輯時間:"+getCurDtStr());
-			$("#saveBtn").prop('disabled', false);
-			$("#exitBtn").prop('disabled', false);
-			*/
+
 			e.preventDefault();
 			window.location = 'index.php?site='+jData.redirectEntrySite;
 		}
 		else{
-		/*
-			$("#saveStatus").html("儲存錯誤，請重試");
-			$("#saveBtn").prop('disabled', false);
-			$("#exitBtn").prop('disabled', false);		
-			*/
+
 		}
 	});
 	 

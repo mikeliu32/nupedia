@@ -29,6 +29,8 @@ if(isset($_GET['action'])){
 			
 				$db->query("INSERT INTO user (userName, userPassword) VALUES ('$newUsername', '$newPW');");
 			
+				createUserFolder($newUsername);
+			
 				$result=array();
 				$result['status']="ok";
 				$result['userId']=$newUsername;
@@ -75,5 +77,15 @@ if(isset($_GET['action'])){
 		
 
 	}
+}
+
+function createUserFolder($userId){
+$dataRoot = "../../npdata/";
+
+$newUserFolder = $dataRoot.$userId;
+
+//make new user root folder
+mkdir($newUserFolder, 0775);
+chmod($newUserFolder, 0775);
 }
 ?>
