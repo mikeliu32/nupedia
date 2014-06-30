@@ -4,8 +4,9 @@ date_default_timezone_set('Asia/Taipei');
 require_once('pathManage.php');
 
 $secAry = $_POST['content'];
+$editBy = $_POST['editby'];
 //wait to fix
-$userID = "mikeliu32";
+$editUserID = $editBy;
 
 $content = array();
 
@@ -52,7 +53,7 @@ $historyfile = $dataHome.$sitePath."/history.json";
 $historyinfo = json_decode(file_get_contents($historyfile));
 
 $newHistory = array();
-$newHistory['editor']=$userID;
+$newHistory['editor']=$editUserID;
 $newHistory['action']='e';
 $newHistory['date']=$newEditDate;
 

@@ -72,8 +72,10 @@ else{
 </div>
 <div id="collabWrap" class="panelTagsWrap">
 <?php
-	foreach($metainfo->collaborator as $collab)
-		echo "<span>$collab</span>";
+	if($metainfo->collaborator){
+		foreach($metainfo->collaborator as $collab)
+			echo "<span>$collab</span>";
+	}
 ?>
 </div>
 
@@ -98,8 +100,10 @@ else{
 </div>
 <div id="tagsWrap" class="panelTagsWrap">
 <?php
+	if($metainfo->tag){
 	foreach($metainfo->tag as $tag)
 		echo "<span class=\"lightcolor\">$tag</span>";
+	}
 ?>
 </div>
 

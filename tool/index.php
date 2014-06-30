@@ -12,9 +12,11 @@ if($IS_ENTRY_EXIST){
 	$contentfile = $dataHome.$sitePath."/content.json";
 	$article = json_decode(file_get_contents($contentfile));
 
-	if($IS_LOGIN)
+	if($IS_LOGIN){
 		$IS_AUTHOR = isAuthor($metainfo->author);
-	
+		if($metainfo->collaborator)
+			$IS_COLLAB = in_array($USER_ID, $metainfo->collaborator);
+	}
 }
 else{
 	header("Location: error.php");
@@ -164,8 +166,12 @@ require_once('header.php');
 	<div class="asidebox-header">標籤</div>
 	<div class="asidebox-content">
 <?php
+	if($metainfo->tag){
 	foreach($metainfo->tag as $tag)
 		echo "<span class=\"tag\">$tag</span>";
+	}
+	else
+		echo "無";
 ?>
 	</div>
 </div>
@@ -201,7 +207,7 @@ require_once('header.php');
 <header id="arti-header">
 <h1 id="article-title"><?php echo $metainfo->title;?></h1>
 <?php
-		if($IS_AUTHOR):
+		if($IS_AUTHOR || $IS_COLLAB):
 ?>
 <a href="editArticle.php?site=<?php echo $sitePath;?>"><i class="section-header-edit"></i>[編輯]</a>
 <?php
@@ -228,7 +234,7 @@ require_once('header.php');
 <div class="section-header">
 <h2><?php echo $section->secName;?></h2>
 <?php
-		if($IS_AUTHOR):
+		if($IS_AUTHOR || $IS_COLLAB):
 ?>
 <a href="editArticle.php?site=<?php echo $sitePath;?>&secID=<?php echo $section->secOrder;?>" class="section-header-edit">[編輯]</a>
 <?php

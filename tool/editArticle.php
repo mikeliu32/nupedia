@@ -9,7 +9,11 @@ if($IS_ENTRY_EXIST){
 
 	$IS_AUTHOR = isAuthor($metainfo->author);
 	
-	if(!$IS_AUTHOR){
+	if($metainfo->collaborator){
+		$IS_COLLAB = in_array($USER_ID, $metainfo->collaborator);
+	}
+	
+	if(!$IS_AUTHOR && !$IS_COLLAB){
 		header("Location: error.php");
 		die();
 	}
@@ -228,7 +232,7 @@ $(document).ready( function() {
 		var request = $.ajax({
 		  url: "edit_process.php?site=<?php echo $sitePath;?>",
 		  type: "POST",
-		  data: { content : wrapContent },
+		  data: { editby: '<? echo $USER_ID;?>', content : wrapContent },
 		  dataType: "json"
 		});
 		 
