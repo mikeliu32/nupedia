@@ -84,6 +84,22 @@ text-decoration: underline;
 
 }
 
+.sr-tags span{
+display: inline-block;
+padding: 4px;
+margin: 2px 2px 2px 0;
+background-color: rgba(27, 152, 248, 0.6);
+color: #fff;
+border-radius: 2px;
+cursor: pointer;
+transition: all 0.3s;
+font-size: 0.8em
+}
+
+.sr-tags span:hover{
+background-color: rgba(27, 152, 248, 0.9);
+}
+
 .list-noitem{
 color: #aaa;
 display: block;

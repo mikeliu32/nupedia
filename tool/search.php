@@ -48,6 +48,7 @@ require_once('header.php');
 				$author = $entry->author;
 				$image = $entry->image;
 				$title = $entry->title;
+				$tags = $entry->tag;
 				$lastEdit = $entry->lastEdit;
 				$abs_plain = mb_strimwidth($entry->abstract_plain, 0, 300, "...", "UTF-8");
 				
@@ -60,7 +61,17 @@ require_once('header.php');
 					<a href="index.php?site=<?php echo $site;?>" class="sr-info-title"><?php echo $title;?></a>
 					<span class="sr-info-extra">作者 <a href="user.php?u=<?php echo $author;?>"><?php echo $author;?></a> ．最後編輯 <?php echo $lastEdit;?></span>
 					<p class="sr-info-abs"><?php echo $abs_plain;?></p>
+				
+					<div class="sr-tags">
+					<?php
+						if($tags){
+							foreach($tags as $tag)
+								echo "<span>$tag</span>";
+						}
+					?>
+					</div>
 				</div>
+
 			</li>
 <?php
 			}

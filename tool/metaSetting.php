@@ -66,6 +66,17 @@ else{
 <div class="panelHeader-title">作者</div>
 <p><?php echo $metainfo->author;?></p>
 </div>
+
+<div class="panelHeader-title">協作者
+<a href="#" id="addCollabBtn" class="panelHeader-title-right">+新增</a>
+</div>
+<div id="collabWrap" class="panelTagsWrap">
+<?php
+	foreach($metainfo->collaborator as $collab)
+		echo "<span>$collab</span>";
+?>
+</div>
+
 <div class="panelHeader-title">設定</div>
 <div class="setting-controls">
 	<span class="setting-label">公開知識檔案</span>
@@ -81,9 +92,15 @@ else{
 		<label for="setting-toggle-2"></label>
 	</div>
 </div>
-<div class="panelHeader-title">設定
-<a href="#" id="addSectionBtn" class="panelHeader-title-right">+新增</a>
-<span class="hint-invert asBlock">拖曳以改變大綱順序</span>
+
+<div class="panelHeader-title">標籤
+<a href="#" id="addTagsBtn" class="panelHeader-title-right">+新增</a>
+</div>
+<div id="tagsWrap" class="panelTagsWrap">
+<?php
+	foreach($metainfo->tag as $tag)
+		echo "<span class=\"lightcolor\">$tag</span>";
+?>
 </div>
 
 
@@ -140,22 +157,72 @@ else{
 </div>
 
 </div>
+<div class="dialogWrap">
+</div>
 
 <script>
 $(document).ready( function() {
 
 	
-	$('#addSectionBtn').click(function(e){
-		$('#sectionTabs').append('<li><a href="#arti-sec'+(sectionListCount+1)+'">new section</a></li>');
+	$('#addCollabBtn').click(function(e){
+		$('.dialogWrap').html('<div id="dialog_addCollab" class="dialog"><h3>新增協作者</h3><input type="text"></input><button>新增</button><span class="closeDialogBtn">X</span></div>');
+		
+		$('.dialog .status').hide();
+		$('.dialogWrap').show();
 	
-		$('#contentArea').append('<div id="arti-sec'+(sectionListCount+1)+'" class="sectionContent"><h2>[<span class="sectionContent-title" secID="'+(sectionListCount+1)+'">new section</span>]</h2><textarea id="sec'+(sectionListCount+1)+
-		'" name="sec'+(sectionListCount+1)+'" class="mceEditor"></textarea></div>');
+		$('.dialogWrap .closeDialogBtn').click(function(e){
+			$('.dialogWrap').hide();
+		});
 
-		tinyMCE.execCommand('mceAddControl', false, 'sec'+(sectionListCount+1));	
-		sectionListCount=refreshSectionList();
+		$('.dialog button').click(function(e){
+			
+			var newCollab = $('.dialog input').val();
+			if(newCollab.length>0){
+				$('#collabWrap').append("<span>"+newCollab+"</span>");
+				$('.dialogWrap').hide();
+			}
+		});
+		
+		e.preventDefault();
 
 	});
 	
+	$('#addTagsBtn').click(function(e){
+		$('.dialogWrap').html('<div id="dialog_addTags" class="dialog"><h3>新增標籤</h3><input type="text"></input><button>新增</button><span class="closeDialogBtn">X</span></div>');
+		
+		$('.dialog .status').hide();
+		$('.dialogWrap').show();
+	
+		$('.dialogWrap .closeDialogBtn').click(function(e){
+			$('.dialogWrap').hide();
+		});
+		
+		$('.dialog button').click(function(e){
+			
+			var newTag = $('.dialog input').val();
+			if(newTag.length>0){
+				$('#tagsWrap').append("<span class=\"lightcolor\">"+newTag+"</span>");
+				$('.dialogWrap').hide();
+			}
+		});
+		
+		e.preventDefault();
+
+	});	
+
+	$('#collabWrap span').click(function(e){
+		var isDelete = confirm("確認要刪除協作者 ["+$(this).html()+" ]?");
+		if (isDelete) {
+			$(this).remove();
+		}
+	});
+	
+	$('#tagsWrap span').click(function(e){
+		var isDelete = confirm("確認要刪除標籤 ["+$(this).html()+" ]?");
+		if (isDelete) {
+			$(this).remove();
+		}
+	});
 	
 	
 	$('#saveBtn').click(function(e){
@@ -169,11 +236,13 @@ $(document).ready( function() {
 		var metaCols = getMetaContent();
 		var colTitle = $("#title").val();
 		var colETitle = $("#etitle").val();
-		
+		var collabs = $('#collabWrap span').map(function(){ return this.innerHTML;});
+		var tags = $('#tagsWrap span').map(function(){ return this.innerHTML;});
+
 		var request = $.ajax({
 		  url: "metaSetting_process.php?site=<?php echo $sitePath;?>&type=m",
 		  type: "POST",
-		  data: { title: colTitle, etitle: colETitle ,meta: metaCols },
+		  data: { title: colTitle, etitle: colETitle ,collaborator: collabs.toArray(), tag: tags.toArray(), meta: metaCols },
 		  dataType: "json"
 		});
 		 

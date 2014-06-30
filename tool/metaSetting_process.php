@@ -18,6 +18,8 @@ if(isset($_GET['type'])){
 			$nTitle = $_POST['title'];
 			$nEtitle = $_POST['etitle'];
 			$rawMeta = $_POST['meta'];
+			$collabs = $_POST['collaborator'];
+			$tags = $_POST['tag'];
 			
 			$nMeta = array();
 			for($i=0;$i<count($rawMeta);$i++){
@@ -32,7 +34,9 @@ if(isset($_GET['type'])){
 			$metainfo->title = $nTitle;
 			$metainfo->etitle = $nEtitle;
 			$metainfo->meta = $nMeta;
-	
+			$metainfo->collaborator = $collabs;
+			$metainfo->tag = $tags;
+			
 			$file = fopen($dataHome.$sitePath."/metainfo.json","w"); //開啟檔案
 			fwrite($file,json_encode($metainfo,JSON_UNESCAPED_UNICODE));
 			fclose($file);

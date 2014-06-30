@@ -166,6 +166,23 @@ padding: 3px 0;
 width: 100%;
 }
 
+span.tag{
+display: inline-block;
+padding: 4px;
+margin: 2px 2px 2px 0;
+background-color: rgba(27, 152, 248, 0.9);
+color: #fff;
+border-radius: 2px;
+cursor: pointer;
+transition: all 0.3s;
+}
+
+span.tag:hover{
+background-color: rgba(27, 152, 248, 0.7);
+}
+
+
+
 
 .main-content{
 margin-left: 21em;

@@ -88,6 +88,7 @@ $metaJson['image']="";
 $metaJson['meta']=array();
 $metaJson['author'] = $author;
 $metaJson['collaborator']="";
+$metaJson['tag']="";
 $metaJson['lastEdit'] = $createdDate;
 
 return json_encode($metaJson,JSON_UNESCAPED_UNICODE);

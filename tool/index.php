@@ -135,7 +135,22 @@ require_once('header.php');
 		</tr>
 		<tr class="infotable-row">
 		<th class="infotable-row-header">協作者</th>
-		<td class="infotable-row-content"><?php echo ($metainfo->collaborator)? $metainfo->collaborator:"無";?></td>
+		<td class="infotable-row-content">
+
+		<?php 
+			if($metainfo->collaborator){
+				for($i=0; $i<count($metainfo->collaborator) ;$i++){
+					$collab = $metainfo->collaborator[$i];
+					echo '<a href="user.php?u='.$collab.'">'.$collab.'</a>';
+					
+					if($i!=count($metainfo->collaborator)-1)
+						echo ', ';
+				}
+			}
+			else
+				echo "無";
+		?>
+		</td>
 		</tr>
 		<tr class="infotable-row">
 		<th class="infotable-row-header">最後編輯</th>
@@ -143,6 +158,15 @@ require_once('header.php');
 		</tr>
 		</tbody>
 		</table>
+	</div>
+</div>
+<div class="asidebox">
+	<div class="asidebox-header">標籤</div>
+	<div class="asidebox-content">
+<?php
+	foreach($metainfo->tag as $tag)
+		echo "<span class=\"tag\">$tag</span>";
+?>
 	</div>
 </div>
 <div class="asidebox">

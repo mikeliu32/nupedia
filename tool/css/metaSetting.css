@@ -71,6 +71,41 @@ font-size: 0.8em;
 margin: 0 4px;
 }
 
+.panelTagsWrap{
+margin: 1em 0.5em;
+}
+
+.panelTagsWrap span{
+display: inline-block;
+padding: 4px;
+margin: 2px 2px 2px 0;
+background-color: #555;
+border-radius: 2px;
+cursor: pointer;
+transition: all 0.3s;
+}
+
+
+.panelTagsWrap span.lightcolor{
+background-color: rgba(27, 152, 248, 0.7);
+}
+
+.panelTagsWrap span:hover{
+background-color: red;
+}
+
+.panelTagsWrap span:hover:before{
+font-family: 'icomoon';
+speak: none;
+font-style: normal;
+font-weight: normal;
+font-variant: normal;
+text-transform: none;
+line-height: 1;
+-webkit-font-smoothing: antialiased;
+content:'\e61b';
+}
+
 .hint-invert.asBlock{
 display: block;
 margin: 0;
@@ -348,3 +383,56 @@ display: block;
 width: 100%;
 }
 
+.dialogWrap{
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+background-color: rgba(0,0,0,0.5);
+z-index: 100;
+display: none;
+}
+
+.dialogWrap .dialog{
+width: 30%;
+background-color: #fff;
+margin: 20% auto 0 auto;
+padding: 2em;
+text-align: center;
+position: relative
+}
+
+.dialog h3{
+margin: 0;
+}
+
+.dialog input{
+display: block;
+margin: 0.5em auto;
+width: 80%;
+font-size: 1.2em;
+}
+
+.dialog button{
+color: #fff;
+background-color: #1b98f8;
+padding: 0.5em 1em;
+border-radius: 5px;
+border: 0;
+display: inline-block;
+}
+
+.dialog .closeDialogBtn{
+position: absolute;
+top: 0;
+right: 0;
+margin: 0.5em;
+padding: 0.25em 0.5em;
+font-weight: bold;
+cursor: pointer;
+}
+
+.dialog .closeDialogBtn:hover{
+
+}
