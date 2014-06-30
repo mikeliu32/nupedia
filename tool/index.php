@@ -449,6 +449,9 @@ require_once('header.php');
 </div>
 
 </section>
+<!-- FB comment plugin -->
+<div class="fb-comments" data-href="http://gaislab.cs.ccu.edu.tw/~yml101/nupedia/tool/index.php?site=<?php echo $sitePath;?>" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+
 <div class="selectTextMenu">
 	<ul>
 		<li>引用</li>

@@ -336,6 +336,10 @@ left: 0;
 right: 0;
 }
 
+.fb-comments iframe{
+margin-top: 2em;
+}
+
 .selectTextMenu{
 display: none;
 background-color: #333;
