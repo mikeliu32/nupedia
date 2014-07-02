@@ -46,6 +46,9 @@ font-weight: bold;
 color: #555;
 }
 
+#searchResultPanel{
+margin-bottom: 6em;
+}
 
 #searchResultPanel ul{
 list-style: none;

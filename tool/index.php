@@ -214,7 +214,7 @@ require_once('header.php');
 		endif;
 ?>
 <div class="socialPanel">
-<a class="socialBtn">收藏</a>
+<a id="addFavBtn" class="socialBtn">收藏</a>
 <?php
 	if($metainfo->isForkable){
 ?>
@@ -544,6 +544,102 @@ $( document ).ready(function() {
 
 	});
 
+/***** add Favorite Btn *****/
+	
+	$("#addFavBtn").hide();
+	checkFavorite();
+	
+	$("#addFavBtn").click(function(e){
+
+		var isFav = $(this).data('isFavorite');
+		
+		if(isFav)
+			removeFavorite();
+		else 
+			addFavorite();
+			
+		e.preventDefault();
+	});
+	
+	
+	function checkFavorite(){
+	
+		var request = $.ajax({
+		  url: "inc/action_favorite.php?action=c",
+		  type: "POST",
+		  data: { eid: '<?php echo $entryID;?>'},
+		  dataType: "json"
+		});
+		 
+		request.done(function( jData ) {
+
+			if(jData.isFavorite==true){
+				$("#addFavBtn").html("已收藏");
+				$("#addFavBtn").data("isFavorite",true);
+				$("#addFavBtn").show();
+
+			}
+			else{
+				$("#addFavBtn").html("收藏");
+				$("#addFavBtn").data("isFavorite",false);
+				$("#addFavBtn").show();	
+			}
+		});
+		 
+		request.fail(function( jqXHR, textStatus ) {
+		  alert( "Request failed: " + textStatus );
+		});
+		
+	}
+	
+	function addFavorite(){
+	
+		var request = $.ajax({
+		  url: "inc/action_favorite.php?action=a",
+		  type: "POST",
+		  data: { eid: '<?php echo $entryID;?>'},
+		  dataType: "json"
+		});
+		 
+		request.done(function( jData ) {
+		
+			if(jData.status=="ok"){
+				$("#addFavBtn").html("已收藏");
+				$("#addFavBtn").data("isFavorite",true);
+			}
+		});
+		 
+		request.fail(function( jqXHR, textStatus ) {
+		  alert( "Request failed: " + textStatus );
+		});
+		
+	}
+	
+	function removeFavorite(){
+	
+		var request = $.ajax({
+		  url: "inc/action_favorite.php?action=r",
+		  type: "POST",
+		  data: { eid: '<?php echo $entryID;?>'},
+		  dataType: "json"
+		});
+		 
+		request.done(function( jData ) {
+		
+			if(jData.status=="ok"){
+				$("#addFavBtn").html("收藏");
+				$("#addFavBtn").data("isFavorite",false);
+			}
+		});
+		 
+		request.fail(function( jqXHR, textStatus ) {
+		  alert( "Request failed: " + textStatus );
+		});
+		
+	}
+	
+
+	
 /***** video scroller *****/
 
 
