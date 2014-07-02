@@ -166,8 +166,9 @@ padding: 3px 0;
 width: 100%;
 }
 
-span.tag{
+a.tag{
 display: inline-block;
+text-decoration: none;
 padding: 4px;
 margin: 2px 2px 2px 0;
 background-color: rgba(27, 152, 248, 0.9);
@@ -177,7 +178,7 @@ cursor: pointer;
 transition: all 0.3s;
 }
 
-span.tag:hover{
+a.tag:hover{
 background-color: rgba(27, 152, 248, 0.7);
 }
 

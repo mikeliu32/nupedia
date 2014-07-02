@@ -168,7 +168,7 @@ require_once('header.php');
 <?php
 	if($metainfo->tag){
 	foreach($metainfo->tag as $tag)
-		echo "<span class=\"tag\">$tag</span>";
+		echo "<a class=\"tag\" href=\"tags.php?tag=".urlencode($tag)."\">$tag</a>";
 	}
 	else
 		echo "無";

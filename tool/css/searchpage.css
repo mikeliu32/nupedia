@@ -38,6 +38,15 @@ line-height: 1.4em;
 vertical-align: top;
 }
 
+.tagHeader{
+width: 50%;
+margin: 0.5em auto 1em auto;
+font-size: 1.8em;
+font-weight: bold;
+color: #555;
+}
+
+
 #searchResultPanel ul{
 list-style: none;
 margin: 0;
@@ -84,8 +93,9 @@ text-decoration: underline;
 
 }
 
-.sr-tags span{
+.sr-tags a.tag{
 display: inline-block;
+text-decoration: none;
 padding: 4px;
 margin: 2px 2px 2px 0;
 background-color: rgba(27, 152, 248, 0.6);
@@ -96,7 +106,7 @@ transition: all 0.3s;
 font-size: 0.8em
 }
 
-.sr-tags span:hover{
+.sr-tags a.tag:hover{
 background-color: rgba(27, 152, 248, 0.9);
 }
 

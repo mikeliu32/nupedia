@@ -66,7 +66,7 @@ require_once('header.php');
 					<?php
 						if($tags){
 							foreach($tags as $tag)
-								echo "<span>$tag</span>";
+								echo "<a class=\"tag\" href=\"tags.php?tag=".urlencode($tag)."\">$tag</a>";
 						}
 					?>
 					</div>
