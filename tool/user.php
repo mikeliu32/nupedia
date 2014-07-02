@@ -29,9 +29,15 @@ if($userId!=null){
 	$result = $db->fetch_array();
 	
 	if(count($result)){
-		$userEntryObj = getUserEnty($userId);
-		$userColabObj = getUserColab($userId);
-	
+		if($IS_AUTHOR){
+			$userEntryObj = getUserEnty($userId,false);
+			$userColabObj = getUserColab($userId,false);
+		}
+		else{
+			$userEntryObj = getUserEnty($userId,true);
+			$userColabObj = getUserColab($userId,true);
+		}
+		
 		$resultAry['entry'] = $userEntryObj->hits->hits;	
 		$resultAry['colab'] = $userColabObj->hits->hits;	
 	}
@@ -149,7 +155,9 @@ require_once('header.php');
 				<div class="sr-image" style="background-image:url('<?php echo $imagePath;?>');"></div>
 				<div class="sr-info">
 					<a href="index.php?site=<?php echo $site;?>" class="sr-info-title"><?php echo $title;?></a>
-					<span class="sr-info-extra">作者 <?php echo $author;?> ．最後編輯 <?php echo $lastEdit;?></span>
+					<span class="sr-info-extra">作者 <a href="user.php?u="<?php echo $author;?>"><?php echo $author?></a> ． 最後編輯 <?php echo $lastEdit;?>
+					<?php echo $isVisible? "． <i class=\"icon-unlocked\"></i> 公開":"． <i class=\"icon-lock\"></i> 不公開"; ?>
+					</span>
 					<p class="sr-info-abs"><?php echo $abs_plain;?></p>
 				</div>
 			</li>
@@ -195,11 +203,14 @@ $( document ).ready(function() {
 
 <?php
 
-function getUserEnty($userID){
+function getUserEnty($userID, $isPublicView){
 
-$elasticUrl_search = "http://gaisq.cs.ccu.edu.tw:9200/nupedia/entry/_search?q=author:";
-
-$searchUrl = $elasticUrl_search.$userID;
+if($isPublicView)
+	$elasticUrl_search = "http://gaisq.cs.ccu.edu.tw:9200/nupedia/entry/_search?q=(isVisible:1)AND(author:";
+else
+	$elasticUrl_search = "http://gaisq.cs.ccu.edu.tw:9200/nupedia/entry/_search?q=(author:";	
+	
+$searchUrl = $elasticUrl_search.$userID.")";
 
 $ch = curl_init($searchUrl);
 
@@ -214,11 +225,14 @@ $resultJObj = json_decode($result);
 return $resultJObj;
 }
 
-function getUserColab($userID){
+function getUserColab($userID, $isPublicView){
 
-$elasticUrl_search = "http://gaisq.cs.ccu.edu.tw:9200/nupedia/entry/_search?q=collaborator:";
-
-$searchUrl = $elasticUrl_search.$userID;
+if($isPublicView)
+	$elasticUrl_search = "http://gaisq.cs.ccu.edu.tw:9200/nupedia/entry/_search?q=(isVisible:1)AND(collaborator:";
+else
+	$elasticUrl_search = "http://gaisq.cs.ccu.edu.tw:9200/nupedia/entry/_search?q=(collaborator:";
+	
+$searchUrl = $elasticUrl_search.$userID.")";
 
 $ch = curl_init($searchUrl);
 

@@ -116,6 +116,12 @@ font-size: 0.9em;
 margin: 6px 0;
 color: #aaa;
 }
+
+.sr-info-extra a{
+color: #aaa;
+text-decoration: underline;
+}
+
 .sr-info .sr-info-abs{
 
 }
