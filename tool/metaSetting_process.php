@@ -18,6 +18,8 @@ if(isset($_GET['type'])){
 			$nTitle = $_POST['title'];
 			$nEtitle = $_POST['etitle'];
 			$rawMeta = $_POST['meta'];
+			$isVisible = $_POST['isVisible'];
+			$isForkable = $_POST['isForkable'];
 			$collabs = $_POST['collaborator'];
 			$tags = $_POST['tag'];
 			
@@ -35,6 +37,8 @@ if(isset($_GET['type'])){
 			$metainfo->etitle = $nEtitle;
 			$metainfo->meta = $nMeta;
 			$metainfo->collaborator = $collabs;
+			$metainfo->isVisible = (int)$isVisible;
+			$metainfo->isForkable = (int)$isForkable;
 			$metainfo->tag = $tags;
 			
 			$file = fopen($dataHome.$sitePath."/metainfo.json","w"); //開啟檔案

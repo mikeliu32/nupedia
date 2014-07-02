@@ -7,7 +7,7 @@ if(isset($_GET['q'])&&$_GET['q']!=NULL){
 	
 	$srObj = searchNupedia($queryStr);
 	
-	$resultAry = $srObj->hits->hits;	
+	$resultAry = $srObj->hits->hits;
 }
 
 ?>
@@ -104,9 +104,9 @@ $( document ).ready(function() {
 
 function searchNupedia($queryStr){
 
-$elasticUrl_search = "http://gaisq.cs.ccu.edu.tw:9200/nupedia/entry/_search?q=";
+$elasticUrl_search = "http://gaisq.cs.ccu.edu.tw:9200/nupedia/entry/_search?q=(isVisible:1)AND(";
 
-$searchUrl = $elasticUrl_search.urlencode($queryStr);
+$searchUrl = $elasticUrl_search.urlencode($queryStr).")";
 
 $ch = curl_init($searchUrl);
 

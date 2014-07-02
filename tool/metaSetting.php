@@ -83,15 +83,15 @@ else{
 <div class="setting-controls">
 	<span class="setting-label">公開知識檔案</span>
 	<div class="setting-toggleSwitch">
-		<input id="setting-toggle-1" class="toggleSwitch" type="checkbox">
-		<label for="setting-toggle-1"></label>
+		<input id="isEntryVisible-toggle" class="toggleSwitch" type="checkbox" <?php echo $metainfo->isVisible? "checked":"";?> >
+		<label for="isEntryVisible-toggle"></label>
 	</div>
 </div>
 <div class="setting-controls">
 	<span class="setting-label">開放分支版本</span>
 	<div class="setting-toggleSwitch">
-		<input id="setting-toggle-2" class="toggleSwitch" type="checkbox">
-		<label for="setting-toggle-2"></label>
+		<input id="isForkable-toggle" class="toggleSwitch" type="checkbox" <?php echo $metainfo->isForkable? "checked":"";?> >
+		<label for="isForkable-toggle"></label>
 	</div>
 </div>
 
@@ -240,13 +240,17 @@ $(document).ready( function() {
 		var metaCols = getMetaContent();
 		var colTitle = $("#title").val();
 		var colETitle = $("#etitle").val();
+		
+		var visible = $("#isEntryVisible-toggle").prop("checked")? 1 : 0;
+		var forkable = $("#isForkable-toggle").prop("checked")? 1 : 0;
+		
 		var collabs = $('#collabWrap span').map(function(){ return this.innerHTML;});
 		var tags = $('#tagsWrap span').map(function(){ return this.innerHTML;});
 
 		var request = $.ajax({
 		  url: "metaSetting_process.php?site=<?php echo $sitePath;?>&type=m",
 		  type: "POST",
-		  data: { title: colTitle, etitle: colETitle ,collaborator: collabs.toArray(), tag: tags.toArray(), meta: metaCols },
+		  data: { title: colTitle, etitle: colETitle , isVisible: visible, isForkable: forkable, collaborator: collabs.toArray(), tag: tags.toArray(), meta: metaCols },
 		  dataType: "json"
 		});
 		 

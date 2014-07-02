@@ -215,7 +215,13 @@ require_once('header.php');
 ?>
 <div class="socialPanel">
 <a class="socialBtn">收藏</a>
+<?php
+	if($metainfo->isForkable){
+?>
 <a class="socialBtn" href="forkEntry.php?site=<?php echo $sitePath;?>">建立分支條目</a>
+<?php
+	}
+?>
 <!-- FB Share Btn -->
 <div class="fb-like" data-href="http://gaislab.cs.ccu.edu.tw/~yml101/nupedia/tool/index.php?site=<?php echo $sitePath;?>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
 </div>

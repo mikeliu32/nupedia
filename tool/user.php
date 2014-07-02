@@ -103,6 +103,7 @@ require_once('header.php');
 				$image = $entry->image;
 				$title = $entry->title;
 				$lastEdit = $entry->lastEdit;
+				$isVisible = $entry->isVisible;
 				$abs_plain = mb_strimwidth($entry->abstract_plain, 0, 300, "...", "UTF-8");
 				
 				$site = $author."/".$eid;
@@ -112,7 +113,9 @@ require_once('header.php');
 				<div class="sr-image" style="background-image:url('<?php echo $imagePath;?>');"></div>
 				<div class="sr-info">
 					<a href="index.php?site=<?php echo $site;?>" class="sr-info-title"><?php echo $title;?></a>
-					<span class="sr-info-extra">作者 <?php echo $author;?> ．最後編輯 <?php echo $lastEdit;?></span>
+					<span class="sr-info-extra">作者 <?php echo $author;?> ． 最後編輯 <?php echo $lastEdit;?>
+					<?php echo $isVisible? "． <i class=\"icon-unlocked\"></i> 公開":"． <i class=\"icon-lock\"></i> 不公開"; ?>
+					</span>
 					<p class="sr-info-abs"><?php echo $abs_plain;?></p>
 				</div>
 			</li>
