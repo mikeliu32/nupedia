@@ -1,6 +1,7 @@
 <?php
 include_once('inc/auth.php');
 include_once('pathManage.php');
+include_once('inc/action_viewCount.php');
 
 if($IS_ENTRY_EXIST){
 
@@ -12,6 +13,9 @@ if($IS_ENTRY_EXIST){
 	$contentfile = $dataHome.$sitePath."/content.json";
 	$article = json_decode(file_get_contents($contentfile));
 
+	//add view count
+	addViewCount($entryID);
+	
 	if($IS_LOGIN){
 		$IS_AUTHOR = isAuthor($metainfo->author);
 		if($metainfo->collaborator)
@@ -178,7 +182,7 @@ require_once('header.php');
 <div class="asidebox">
 	<div class="asidebox-header">相關條目</div>
 	<div class="asidebox-content">
-		<ul>
+		<ul id="relatedEntryList">
 		<li><a href="#">貝多芬</a></li>
 		<li><a href="#">海頓</a></li>
 		<li><a href="#">奧地利</a></li>
@@ -191,7 +195,7 @@ require_once('header.php');
 <div class="asidebox">
 	<div class="asidebox-header">熱門條目</div>
 	<div class="asidebox-content">
-		<ul>
+		<ul id="hotEntryList">
 		<li><a href="#">太陽花學運</a></li>
 		<li><a href="#">馬英九</a></li>
 		<li><a href="#">中華民國憲法</a></li>
@@ -630,6 +634,38 @@ $( document ).ready(function() {
 				$("#addFavBtn").html("收藏");
 				$("#addFavBtn").data("isFavorite",false);
 			}
+		});
+		 
+		request.fail(function( jqXHR, textStatus ) {
+		  alert( "Request failed: " + textStatus );
+		});
+		
+	}
+	
+/***** get hot entry list *****/
+	getHotList();
+	function getHotList(){
+	
+		var request = $.ajax({
+		  url: "inc/action_getHotEntries.php?size=5",
+		  type: "GET",
+		  dataType: "json"
+		});
+		 
+		request.done(function( jData ) {
+		
+			if(jData.length==0)
+				$("#hotEntryList").html("無");
+			
+			else{
+				var hotlistHtml = "";
+				for(var i = 0 ; i<jData.length ;i++)
+					hotlistHtml+="<li><a href=\"index.php?site="+jData[i].sitePath+"\">"+jData[i].title+"</a></li>";
+				
+				$("#hotEntryList").html(hotlistHtml);
+
+			}
+
 		});
 		 
 		request.fail(function( jqXHR, textStatus ) {
