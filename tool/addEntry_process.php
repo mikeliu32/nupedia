@@ -89,7 +89,11 @@ $metaJson['meta']=array();
 $metaJson['author'] = $author;
 $metaJson['collaborator']="";
 $metaJson['tag']="";
+$metaJson['isVisible'] = 0;
+$metaJson['isForkable'] = 1;
 $metaJson['lastEdit'] = $createdDate;
+$metaJson['favCount'] = 0;
+$metaJson['viewCount'] = 0;
 
 return json_encode($metaJson,JSON_UNESCAPED_UNICODE);
 }

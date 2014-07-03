@@ -95,7 +95,13 @@ $srcMetainfo->etitle ="";
 $srcMetainfo->image = "";
 $srcMetainfo->author = $newAuthor;
 $srcMetainfo->collaborator = "";
+$srcMetainfo->isVisible = 0;
+$srcMetainfo->isForkable = 1;
 $srcMetainfo->lastEdit = $createdDate;
+$srcMetainfo->favCount = 0;
+$srcMetainfo->viewCount = 0;
+
+
 
 return $srcMetainfo;
 }
