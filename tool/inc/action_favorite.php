@@ -21,7 +21,9 @@ if( isset($_GET['action']) && $IS_LOGIN ){
 					
 				if(count($result)==0){
 					$db->query("INSERT INTO favorite (userName, eid) VALUES ('$USER_ID', '$EID');");
-						
+
+					updateFavCount($EID, true);
+
 					$result=array();
 					$result['status']="ok";
 					echo json_encode($result);
@@ -34,7 +36,9 @@ if( isset($_GET['action']) && $IS_LOGIN ){
 				$EID = $_POST['eid'];
 
 				$db->query("DELETE FROM favorite WHERE userName = '$USER_ID' AND eid = '$EID';");
-					
+
+				updateFavCount($EID, false);
+
 				$result=array();
 				$result['status']="ok";
 				echo json_encode($result);
@@ -64,5 +68,27 @@ if( isset($_GET['action']) && $IS_LOGIN ){
 	}
 
 }
+
+
+function updateFavCount($entryID, $isAdd){
+$elasticUrl_updateUrl = "http://gaisq.cs.ccu.edu.tw:9200/nupedia/entry/".$entryID."/_update";
+
+$docContent = array();
+$docContent['script'] = ($isAdd)? "ctx._source.favCount+=1" : "ctx._source.favCount+=-1";
+
+$ch = curl_init($elasticUrl_updateUrl);
+
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($docContent,JSON_UNESCAPED_UNICODE) );
+$result = curl_exec($ch);
+
+curl_close($ch);  // Seems like good practice
+
+$resultJObj = json_decode($result);
+
+//return $resultJObj->created;
+}
+
 
 ?>
