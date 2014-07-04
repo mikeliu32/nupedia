@@ -549,7 +549,16 @@ $( document ).ready(function() {
 	});
 
 /***** add Favorite Btn *****/
-	
+<?php
+if(!$IS_LOGIN):
+?>
+	$(".socialBtn").click(function(e){
+		e.preventDefault();
+		alert("請先登入!");
+	});
+<?php
+else:
+?>
 	$("#addFavBtn").hide();
 	checkFavorite();
 	
@@ -641,7 +650,9 @@ $( document ).ready(function() {
 		});
 		
 	}
-	
+<?php
+endif;
+?>
 /***** get hot entry list *****/
 	getHotList();
 	function getHotList(){
