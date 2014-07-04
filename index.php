@@ -24,7 +24,7 @@ include_once('tool/inc/auth.php');
 <nav>
 <ul>
     <li><a href="#">分類瀏覽</a></li>
-    <li><a href="#">熱門條目</a></li>
+    <li><a href="tool/trend.php">熱門條目</a></li>
 <?php
 	if($IS_LOGIN):
 ?>

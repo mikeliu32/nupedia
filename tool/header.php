@@ -19,7 +19,7 @@
 
 <ul id="headerBar-nav">
 <li><a href="#">分類瀏覽</a></li>
-<li><a href="#">熱門條目</a></li>
+<li><a href="trend.php">熱門條目</a></li>
 </ul>
 
 </header>
