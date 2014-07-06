@@ -182,7 +182,7 @@ require_once('header.php');
 <div class="asidebox">
 	<div class="asidebox-header">相關條目</div>
 	<div class="asidebox-content">
-		<ul id="relatedEntryList">
+		<ul id="relatedTermList">
 		<li><a href="#">貝多芬</a></li>
 		<li><a href="#">海頓</a></li>
 		<li><a href="#">奧地利</a></li>
@@ -685,7 +685,38 @@ endif;
 		
 	}
 	
+/***** get related term list *****/
+	getRelatedTermList('<?php echo $metainfo->title;?>');
+	function getRelatedTermList(keyword){
+	
+		var request = $.ajax({
+		  url: "inc/action_getRelatedTerm.php",
+		  type: "GET",
+		  data: { keyword: keyword, size: 10 },
+		  dataType: "json"
+		});
+		 
+		request.done(function( jData ) {
+		
+			if(jData.count==0)
+				$("#relatedTermList").html("無");
+			
+			else{
+				var relatedTermHtml = "";
+				for(var i = 0 ; i<jData.results.length ;i++)
+					relatedTermHtml+="<li><a href=\"showTopic.php?keyword="+jData.results[i].relatedword+"\">"+jData.results[i].relatedword+"</a></li>";
+				
+				$("#relatedTermList").html(relatedTermHtml);
 
+			}
+
+		});
+		 
+		request.fail(function( jqXHR, textStatus ) {
+		  alert( "Request failed: " + textStatus );
+		});
+		
+	}
 	
 /***** video scroller *****/
 
