@@ -1,0 +1,14 @@
+#Options -Indexes
+#Options +FollowSymLinks
+
+#RewriteEngine On
+#RewriteBase /~yml101/nupedia/
+#RedirectMatch permanent ^[a-z0-9/]+/images/(.*)$ $1
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^user/([a-z0-9]+)$ tool/user.php?u=$1 [L]
+
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^[a-z0-9/]+/(css|js|images)/(.*)$ tool/$1/$2 [L]
+
