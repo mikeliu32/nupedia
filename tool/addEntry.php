@@ -39,16 +39,9 @@ require_once('header.php');
 			<li type="0">人物</li>
 			<li type="1">事件</li>
 			<li type="2">地理</li>
-			<li type="3">文學</li>
-			<li type="4">藝術</li>
-			<li type="5">應用科學</li>
-			<li type="6">自然科學</li>
-			<li type="7">語言</li>
-			<li type="8">人文</li>
-			<li type="9">社會</li>
-			<li type="10">宗教</li>
-			<li type="11">心理</li>
-			<li type="12">資訊</li>
+			<li type="3">組織</li>
+			<li type="4">應用科學</li>
+			<li type="5">其他</li>
 		</ul>
 
 		<ul id="type-0" class="typelist subtypelist">
@@ -75,10 +68,24 @@ require_once('header.php');
 			<li subtype="2">地形</li>
 			<li subtype="3">地標</li>
 		</ul>
+		<ul id="type-3" class="typelist subtypelist">
+			<li subtype="0">宗教團體</li>
+			<li subtype="1">企業/公司</li>
+			<li subtype="2">政黨</li>
+			<li subtype="3">一般組織/團體</li>
+		</ul>
+		<ul id="type-4" class="typelist subtypelist">
+			<li subtype="0">公式/定理</li>
+			<li subtype="1">方法</li>
+			<li subtype="2">現象</li>
+		</ul>
+		<ul id="type-5" class="typelist subtypelist">
+			<li subtype="0">一般條目(不套用範本)</li>
+		</ul>
 	</div>
 	<div id="footerBtns">
 	<a href="#" id="saveBtn" class="footerBtn save">建立條目</a>
-	<a href="#" id="exitBtn" class="footerBtn cancel">離開</a>
+	<a href="user.php" id="exitBtn" class="footerBtn cancel">離開</a>
 	</div>
 </main>
 <script type="text/javascript">
