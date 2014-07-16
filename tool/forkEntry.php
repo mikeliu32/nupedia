@@ -78,7 +78,6 @@ $( document ).ready(function() {
 
 			if(jData.status=='ok'){
 
-				e.preventDefault();
 				window.location = 'index.php?site='+jData.redirectEntrySite;
 			}
 			else{

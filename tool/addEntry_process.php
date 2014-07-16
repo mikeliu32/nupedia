@@ -14,7 +14,7 @@ $dataRoot = "../npdata/";
 
 $newEntryTitle = $_GET['entryTitle'];
 
-if( count($_GET['type'])>0 && count($_GET['subtype'])>0){
+if( strlen($_GET['type'])>0 && strlen($_GET['subtype'])>0){
 $tagAry = array();
 $tagAry[]= $_GET['type'];
 $tagAry[]= $_GET['subtype'];
@@ -31,7 +31,7 @@ foreach($_GET['template'] as $meta){
 }
 else{
 $tagAry="";
-$metaAry="";
+$metaAry=array();
 }
 
 $newEntryID = getRandomEntryID();

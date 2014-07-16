@@ -136,7 +136,7 @@ $("#saveBtn").click(function(e){
 	});
 	request.done(function( jData ) {
 		if(jData.status=='ok'){
-			e.preventDefault();
+		
 			window.location = 'index.php?site='+jData.redirectEntrySite;
 		}
 		else{

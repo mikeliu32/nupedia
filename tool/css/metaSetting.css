@@ -51,6 +51,36 @@ padding: 0 0.25em;
 margin: 0.8em 0;
 }
 
+.metaSettingTitle{
+position: relative;
+}
+
+#deleteEntryBtn{
+position: absolute;
+right: 6px;
+top: 0;
+background-color: red;
+padding: 2px 4px;
+font-size: 1.2em;
+border-radius: 2px;
+opacity: 0.8;
+transition: all 0.3s;
+cursor:pointer;
+}
+
+#deleteEntryBtn span{
+display:none;
+transition: all 0.3s;
+}
+
+#deleteEntryBtn:hover{
+opacity: 1;
+}
+
+#deleteEntryBtn:hover span{
+display:initial;
+}
+
 .panelHeader-title{
 background-color:#111;
 color: #666;

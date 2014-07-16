@@ -60,7 +60,10 @@ else{
 <div id="leftPanelArea">
 <div id="leftPanel">
 <div class="panelHeader">
+<div class="metaSettingTitle">
 <h3>條目設定</h3>
+<div id="deleteEntryBtn"><i class="icon-remove"></i> <span>刪除條目</span></div>
+</div>
 <div class="panelHeader-title">條目名稱</div>
 <p id="entryinfo-title"><?php echo $metainfo->title;?></p>
 <div class="panelHeader-title">作者</div>
@@ -142,6 +145,7 @@ else{
 		<span id="addColBtn"><i class="icon-plus"></i> 新增</span>
 		</div>
 <?php
+		if($meta){
 		for($i=0;$i<count($meta);$i++){
 			$colName = "meta-".$i;
 ?>
@@ -152,6 +156,7 @@ else{
 			</div>
 <?php
 		}
+		}
 ?>
 
 	</form>
@@ -161,30 +166,51 @@ else{
 </div>
 
 </div>
-<div class="dialogWrap">
+<div id="promptDialog" class="dialogWrap">
 </div>
-
+<div id="removingDialog" class="dialogWrap">
+<div class="dialog"><h3>刪除條目中，請稍後...</h3><p>過程中請勿重新整理，刪除完成後頁面將會自動跳轉</p></div>
+</div>
 <script>
 $(document).ready( function() {
 
 	
+	
+	
+	$('#deleteEntryBtn').click(function(e){
+		var isDelete = confirm("條目一經刪除，其所有的資料與檔案皆會被移除。確認要刪除條目?");
+		if (isDelete) {
+			$("#removingDialog").show();
+			removeEntry();
+		}
+	});
+	
 	$('#addCollabBtn').click(function(e){
-		$('.dialogWrap').html('<div id="dialog_addCollab" class="dialog"><h3>新增協作者</h3><input type="text"></input><button>新增</button><span class="closeDialogBtn">X</span></div>');
+		$('#promptDialog').html('<div id="dialog_addCollab" class="dialog"><h3>新增協作者</h3><input type="text"></input><button>新增</button><span class="closeDialogBtn">X</span></div>');
 		
 		$('.dialog .status').hide();
-		$('.dialogWrap').show();
+		$('#promptDialog').show();
 	
-		$('.dialogWrap .closeDialogBtn').click(function(e){
-			$('.dialogWrap').hide();
+		$('#promptDialog .closeDialogBtn').click(function(e){
+			$('#promptDialog').hide();
 		});
 
 		$('.dialog button').click(function(e){
 			
 			var newCollab = $('.dialog input').val();
 			if(newCollab.length>0){
-				$('#collabWrap').append("<span>"+newCollab+"</span>");
-				$('.dialogWrap').hide();
+				var newSpan = $("<span>"+newCollab+"</span>");
+				$('#collabWrap').append(newSpan);
+				$('#promptDialog').hide();
 			}
+			
+			$(newSpan).click(function(e){
+				var isDelete = confirm("確認要刪除協作者 ["+$(this).html()+" ]?");
+				if (isDelete) {
+				$(this).remove();
+			}
+			});
+			
 		});
 		
 		e.preventDefault();
@@ -192,22 +218,32 @@ $(document).ready( function() {
 	});
 	
 	$('#addTagsBtn').click(function(e){
-		$('.dialogWrap').html('<div id="dialog_addTags" class="dialog"><h3>新增標籤</h3><input type="text"></input><button>新增</button><span class="closeDialogBtn">X</span></div>');
+		$('#promptDialog').html('<div id="dialog_addTags" class="dialog"><h3>新增標籤</h3><input type="text"></input><button>新增</button><span class="closeDialogBtn">X</span></div>');
 		
 		$('.dialog .status').hide();
-		$('.dialogWrap').show();
+		$('#promptDialog').show();
 	
-		$('.dialogWrap .closeDialogBtn').click(function(e){
-			$('.dialogWrap').hide();
+		$('#promptDialog .closeDialogBtn').click(function(e){
+			$('#promptDialog').hide();
 		});
 		
 		$('.dialog button').click(function(e){
 			
 			var newTag = $('.dialog input').val();
 			if(newTag.length>0){
-				$('#tagsWrap').append("<span class=\"lightcolor\">"+newTag+"</span>");
-				$('.dialogWrap').hide();
+				var newSpan = $("<span class=\"lightcolor\">"+newTag+"</span>");
+
+				$('#tagsWrap').append(newSpan);
+				$('#promptDialog').hide();
 			}
+			
+			$(newSpan).click(function(e){
+				var isDelete = confirm("確認要刪除標籤 ["+$(this).html()+" ]?");
+				if (isDelete) {
+					$(this).remove();
+				}
+			});
+			
 		});
 		
 		e.preventDefault();
@@ -282,6 +318,7 @@ $(document).ready( function() {
 		window.location = 'index.php?site=<?php echo $sitePath;?>';
 	
 	});
+	
 	
 	$('#uploadImageForm').submit(function(e){
 		e.preventDefault();
@@ -430,6 +467,39 @@ function getMetaContent(){
 	return metaResult;
 	
 }
+
+function removeEntry(){
+
+var request = $.ajax({
+	  url: "deleteEntry_process.php?site=<?php echo $sitePath;?>",
+	  type: "POST",
+	  data: { eid: '<?php echo $entryID;?>' },
+	  dataType: "json"
+	});
+	 
+	request.done(function( jData ) {
+
+		if(jData.status=='ok'){
+		
+			$("#removingDialog .dialog").html("<h3>刪除成功! 跳轉中...</h3>");
+			
+			 window.setTimeout(function(){
+				window.location = 'user.php';
+			}, 3000);
+		
+		}
+		else{
+			$("#removingDialog .dialog").html("<h3>刪除失敗! 請重試</h3>");
+
+		}
+	});
+	 
+	request.fail(function( jqXHR, textStatus ) {
+	  alert( "Request failed: " + textStatus );
+	});
+
+}
+
 
 
 

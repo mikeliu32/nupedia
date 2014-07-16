@@ -108,13 +108,15 @@ require_once('header.php');
 		<tbody>
 
 <?php
-		foreach($meta as $metaRow){
+		if($meta){
+			foreach($meta as $metaRow){
 ?>
 		<tr class="infotable-row">
 		<th class="infotable-row-header"><?php echo $metaRow->name;?></th>
 		<td class="infotable-row-content"><?php echo $metaRow->value;?></td>
 		</tr>
 <?php
+			}
 		}
 ?>
 		<!--tr class="infotable-row">
