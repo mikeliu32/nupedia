@@ -9,10 +9,30 @@ if(!$IS_LOGIN){
 }
 
 if(isset($_GET['entryTitle'])){
- 
+
 $dataRoot = "../npdata/";
 
 $newEntryTitle = $_GET['entryTitle'];
+
+if( count($_GET['type'])>0 && count($_GET['subtype'])>0){
+$tagAry = array();
+$tagAry[]= $_GET['type'];
+$tagAry[]= $_GET['subtype'];
+
+$metaAry= array();
+foreach($_GET['template'] as $meta){
+	$metaCol = array();
+	$metaCol['name']=$meta;
+	$metaCol['value']="";
+	
+	$metaAry[]=$metaCol;
+}
+
+}
+else{
+$tagAry="";
+$metaAry="";
+}
 
 $newEntryID = getRandomEntryID();
 $newEntryPath = $dataRoot.$USER_ID."/".$newEntryID;
@@ -44,7 +64,7 @@ $curTime = time();
 $createdDate_raw = date("Y-m-d\TH:i:s",$curTime);
 $createdDate = date("Y/m/d H:i:s",$curTime);
 
-$metaInfoJStr = getMetaInfoJsonStr($USER_ID, $newEntryID, $newEntryTitle, $createdDate);
+$metaInfoJStr = getMetaInfoJsonStr($USER_ID, $newEntryID, $newEntryTitle, $createdDate, $tagAry, $metaAry);
 
 //create default matainfo File
 $fp = fopen($newEntryPath.'/metainfo.json', 'w');
@@ -78,17 +98,17 @@ function getRandomEntryID(){
 }
 
 
-function getMetaInfoJsonStr($author, $entryID, $entryTitle, $createdDate){
+function getMetaInfoJsonStr($author, $entryID, $entryTitle, $createdDate, $tagAry, $metaAry){
 
 $metaJson = array();
 $metaJson['eid'] = $entryID;
 $metaJson['title']= $entryTitle;
 $metaJson['etitle']="";
 $metaJson['image']="";
-$metaJson['meta']=array();
+$metaJson['meta']= $metaAry; //will add default category template
 $metaJson['author'] = $author;
 $metaJson['collaborator']="";
-$metaJson['tag']="";
+$metaJson['tag']= $tagAry; //will add default category tags
 $metaJson['isVisible'] = 0;
 $metaJson['isForkable'] = 1;
 $metaJson['lastEdit'] = $createdDate;
