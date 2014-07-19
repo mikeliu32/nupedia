@@ -31,15 +31,19 @@ margin-bottom: 2em;
 .headerBar .headerBar-logo{
 width: 120px;
 height: 36px;
-margin: 0 6px;
+margin: 4px 6px;
 padding: 0;
 display: inline-block;
 vertical-align: middle;
 }
 
+#headerBar-control{
+display:inline;
+}
+
 #headerBar-nav{
 list-style: none;
-margin: 12px 0;
+margin: 0;
 padding: 0;
 display: inline-block;
 vertical-align: middle;
@@ -54,6 +58,7 @@ display: inline-block;
 #headerBar-nav li a{
 text-decoration: none;
 color: #fff;
+display: inline-block;
 padding: 12px 8px;
 }
 
@@ -63,20 +68,17 @@ background-color: #444;
 
 #headerBar-user{
 display: inline-block;
-float: right;
 }
 
 #headerBar-user a{
-color: #fff;
 background-color: rgba(248, 133, 27, 0.3);
-text-decoration: none;
 display: inline-block;
 padding: 11px 16px;
 transition: background-color 0.3s;
 }
 
 #headerBar-user a:hover{
-background-color: rgba(248, 133, 27, 0.7);
+background-color: rgba(248, 133, 27, 0.7)!important;
 }
 
 #headerBar-user a i{
@@ -108,6 +110,21 @@ width: 100%;
 display: none;
 }
 
+#headerBar-mNav{
+background-color: #333;
+cursor: pointer;
+width: 44px;
+height: 44px;
+float: right;
+display: none;
+}
+
+#headerBar-mNav img{
+width: 32px;
+padding: 6px 4px 6px 8px;
+}
+
+
 .errormsg{
 text-align: center;
 font-size: 1.2em;
@@ -120,3 +137,45 @@ font-size: 2em;
 font-weight: 700;
 }
 
+@media screen and (max-width: 641px){
+
+#headerBar-control{
+display:block;
+background-color: #333;
+position: absolute;
+left: 0;
+right: 0;
+z-index: 100;
+font-size: 1.4em;
+display:none;
+}
+
+#headerBar-searchForm{
+display: block;
+vertical-align: middle;
+margin: 14px auto;
+width: 80%;
+}
+
+
+#headerBar-nav{
+display: block;
+float: none;
+}
+
+#headerBar-nav li{
+display: block;
+border-top: 1px solid #555;
+}
+
+#headerBar-nav li a{
+display: block;
+padding: 16px 0;
+text-align: center;
+}
+
+#headerBar-mNav{
+display: initial;
+}
+
+}
