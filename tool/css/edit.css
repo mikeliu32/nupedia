@@ -153,6 +153,22 @@ font-size: 0.8em;
 margin-left: 0.5em;
 }
 
+span.sectionContent-addDir{
+background: #555;
+color: #fff;
+padding: 2px 4px;
+border-radius: 2px;
+font-size: 0.8rem;
+font-weight: normal;
+vertical-align: middle;
+cursor: pointer;
+text-decoration: none;
+}
+
+span.sectionContent-addDir:hover{
+background: #777;
+}
+
 .sectionContent textarea{
 width:80%;
 height:300px;

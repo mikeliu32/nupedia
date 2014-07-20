@@ -66,7 +66,8 @@ foreach($file_list as $key=>$row){
 	$f_name[$key] = $row['name'];
 	$f_ext[$key] = $row['ext'];
 }
-array_multisort($f_ext, SORT_ASC, $f_name, SORT_ASC, $file_list);
+if(count($file_list)>0)
+	array_multisort($f_ext, SORT_ASC, $f_name, SORT_ASC, $file_list);
 
 ?>
 
@@ -180,18 +181,7 @@ array_multisort($f_ext, SORT_ASC, $f_name, SORT_ASC, $file_list);
 </div>
 </div>
 
-<div id="searchPanelArea">
-<div class="panelHeader">
-<h3>搜尋工具</h3>
-<input placeholder="輸入要搜尋的詞彙..."></input>
-<ul id="searchTypeBtns">
-	<li><a href="#" class="active">網頁</a></li>
-	<li><a href="#">圖片</a></li>
-	<li><a href="#">影片</a></li>
-	<li><a href="#">新聞</a></li>
-	<li><a href="#">NuPedia</a></li>
-</div>
-</div>
+
 </div>
 </div>
 

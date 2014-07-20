@@ -24,6 +24,8 @@ if($IS_ENTRY_EXIST){
 	$article = json_decode(file_get_contents($contentfile));
 
 	
+	$filePath = $dataHome.$sitePath."/files/";
+	
 	if(isset($_GET['secID'])){
 		$selectedSecID = $_GET['secID']; 
 	}
@@ -113,7 +115,24 @@ else{
 ?>
 
 <div id="arti-sec<?php echo $section->secOrder;?>" class="sectionContent">
-<h2>[<span class="sectionContent-title" secID="<?php echo $section->secOrder;?>"><?php echo $section->secName;?></span>]<a class="sectionContent-EditDir" href="editDirectory.php?site=<?php echo $sitePath;?>&path=<?php echo urlencode($section->secName);?>"><i class="icon-folder"></i></a></h2>
+<h2>[<span class="sectionContent-title" secID="<?php echo $section->secOrder;?>"><?php echo $section->secName;?></span>]
+
+<?php
+	//該章節有資料夾，建立資料夾檢視連結
+	if (is_dir($filePath.$section->secName)):
+?>
+<a class="sectionContent-EditDir" target="_blank" href="editDirectory.php?site=<?php echo $sitePath;?>&path=<?php echo urlencode($section->secName);?>"><i class="icon-folder"></i></a>
+
+<?php
+	//該章節沒有資料夾，建立新增按鈕
+	else:
+?>
+<span class="sectionContent-addDir" secID="<?php echo $section->secOrder;?>" secName="<?php echo $section->secName;?>"><i class="icon-plus"></i> 建立章節資料夾</span>
+<?php
+	endif;
+?>
+
+</h2>
 <textarea id="sec<?php echo $section->secOrder;?>" name="sec<?php echo $section->secOrder;?>" class="mceEditor">
 <?php echo $section->content;?>
 </textarea>
@@ -257,12 +276,56 @@ $(document).ready( function() {
 		
 	});
 	
+	
 	$('#exitBtn').click(function(e){
 		e.preventDefault();
 		window.location = 'index.php?site=<?php echo $sitePath;?>';
 	
 	});
 
+	//新增條目附加資料夾
+	$(".sectionContent-addDir").click(function(e){
+
+		var folderName = $(this).attr("secName");
+		var secID = $(this).attr("secID");
+		
+		
+		var isConfirm = confirm("確定要為章節["+folderName+"]新增一個檔案資料夾?");
+		if (isConfirm) {
+
+		
+	
+		var request = $.ajax({
+		  url: "edit_createSubFolder_process.php?site=<?php echo $sitePath;?>",
+		  type: "POST",
+		  data: { eid: '<?php echo $entryID;?>', secID: secID, folderName: folderName },
+		  dataType: "json"
+		});
+		 
+		request.done(function( jData ) {
+
+			if(jData.status=='ok'){
+			
+				var secContentHeader = $("#arti-sec"+jData.secID);
+				
+				$("#arti-sec"+jData.secID+" h2 .sectionContent-addDir").remove();
+				$("#arti-sec"+jData.secID+" h2").append('<a class="sectionContent-EditDir" target="_blank" href="editDirectory.php?site='+jData.sitePath+'&path='+jData.folderName+'"><i class="icon-folder"></i></a>');
+				
+				//$(this).remove();
+			
+			}
+			else{
+
+			}
+		});
+		 
+		request.fail(function( jqXHR, textStatus ) {
+		  alert( "Request failed: " + textStatus );
+		});
+	
+		}
+	});
+	
 
 	$( "#searchForm" ).submit(function( e ) {
 	    e.preventDefault();
@@ -379,6 +442,7 @@ function refreshSectionList(){
 	
 	});
 
+
 	return sectionTabList.length;
 }
 
@@ -396,6 +460,7 @@ function wrapEditContent(){
 		sectionObj['secOrder']=secCt;
 		sectionObj['title']=tab.text();
 		sectionObj['content']= $(secID+" textarea").val();
+
 		secCt++;
 	
 		return sectionObj;

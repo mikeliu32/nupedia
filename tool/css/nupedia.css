@@ -241,6 +241,17 @@ display: inline-block;
 margin-left: 0.25em;
 }
 
+
+a.section-header-dirView{
+text-decoration: none;
+color: rgba(255, 101, 0, 0.5);
+font-size: 1.2em;
+margin-left: 0.5em;
+}
+a.section-header-dirView:hover{
+text-decortaion: none;
+}
+
 .video-scroller{
 position: relative;
 }

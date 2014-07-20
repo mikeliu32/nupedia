@@ -13,6 +13,8 @@ if($IS_ENTRY_EXIST){
 	$contentfile = $dataHome.$sitePath."/content.json";
 	$article = json_decode(file_get_contents($contentfile));
 
+	$filePath = $dataHome.$sitePath."/files/";
+	
 	//add view count
 	addViewCount($entryID);
 	
@@ -185,12 +187,7 @@ require_once('header.php');
 	<div class="asidebox-header">相關條目</div>
 	<div class="asidebox-content">
 		<ul id="relatedTermList">
-		<li><a href="#">貝多芬</a></li>
-		<li><a href="#">海頓</a></li>
-		<li><a href="#">奧地利</a></li>
-		<li><a href="#">古典音樂</a></li>
-		<li><a href="#">魔笛</a></li>
-		<li><a href="#">交響樂</a></li>
+
 		</ul>
 	</div>
 </div>
@@ -198,11 +195,7 @@ require_once('header.php');
 	<div class="asidebox-header">熱門條目</div>
 	<div class="asidebox-content">
 		<ul id="hotEntryList">
-		<li><a href="#">太陽花學運</a></li>
-		<li><a href="#">馬英九</a></li>
-		<li><a href="#">中華民國憲法</a></li>
-		<li><a href="#">兩岸服貿協議</a></li>
-		<li><a href="#">黑色島國</a></li>
+
 		</ul>
 	</div>
 </div>
@@ -246,6 +239,12 @@ require_once('header.php');
 <div class="section-header">
 <h2><?php echo $section->secName;?></h2>
 <?php
+	if(is_dir($filePath.$section->secName)):
+?>
+<a class="section-header-dirView" href="editDirectory.php?site=<?php echo $sitePath;?>&path=<?php echo urlencode($section->secName);?>"><i class="icon-folder"></i></a>
+<?php
+	endif;
+	
 		if($IS_AUTHOR || $IS_COLLAB):
 ?>
 <a href="editArticle.php?site=<?php echo $sitePath;?>&secID=<?php echo $section->secOrder;?>" class="section-header-edit">[編輯]</a>
